@@ -22,7 +22,7 @@ class StockRepository
     }
 
     // Enregistrer un nouveau don reçu (Entrée en stock)
-    public function addStock($id_article, $quantite, $date_reception)
+    public function saveDonation($id_article, $quantite, $date_reception)
     {
         $query = "INSERT INTO stock_dons (id_article, quantite_recue, date_reception) 
                   VALUES (?, ?, ?)";

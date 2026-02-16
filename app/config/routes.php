@@ -45,8 +45,16 @@ $router->group('', function(Router $router) use ($app) {
         BesoinController::showBesoin($app);
     });
 
-    $router->get('/don', function () use ($app) {
-        DonController::showDon($app);
+    $router->group('/don', function () use ($router, $app) {
+
+        $router->get('', function () use ($app) {
+            DonController::showDon($app);
+        });
+
+        $router->post('/reception', function () use ($app) {
+            DonController::saveDon($app);
+        });
+
     });
 
     $router->get('/dashboard', function () use ($app) {

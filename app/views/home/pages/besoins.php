@@ -11,18 +11,22 @@
                 </div>
                 <p class="mb-4">Saisir les nouveaux besoins.</p>
 
-                <select name="" id="" class="form-select mb-3 ">
-                    <option value="">Type de besoin</option>
-                    <option value="">Besoin 1</option>
-                    <option value="">Besoin 2</option>
-                    <option value="">Besoin 3</option>
+                <select name="id_ville" class="form-select mb-3" required>
+                    <option value="" selected disabled>Choisir une ville</option>
+                    <?php foreach ($villes as $ville): ?>
+                        <option value="<?= $ville['id'] ?>">
+                            <?= formatText($ville['nom']) ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
 
-                <select name="" id="" class="form-select mb-3 ">
-                    <option value="">Catégorie</option>
-                    <option value="">Catégorie 1</option>
-                    <option value="">Catégorie 2</option>
-                    <option value="">Catégorie 3</option>
+                <select name="id_article" class="form-select brutalist-input mb-3" required>
+                    <option value="" selected disabled>Choisir un article</option>
+                    <?php foreach ($articles as $article): ?>
+                        <option value="<?= $article['id'] ?>">
+                            <?= formatText($article['nom']) ?> (<?= formatText($article['unite']) ?>)
+                        </option>
+                    <?php endforeach; ?>
                 </select>
 
                 <input type="number" class="form-control mb-5" placeholder="Quantité de besoin">

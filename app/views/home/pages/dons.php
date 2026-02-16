@@ -1,12 +1,20 @@
-<?php if (isset($flash)){ ?>
-    <div class="alert-brutal <?= $flash['type'] === 'error' ? 'alert-error' : 'alert-success' ?> mb-5">
-        <div class="d-flex align-items-center">
-            <span class="flash-icon me-3">
+<?php if (isset($flash)) { ?>
+    <div
+        class="alert <?= $flash['type'] === 'error' ? 'alert-danger' : 'alert-success' ?> d-flex align-items-center rounded-0 border-4 border-dark p-4 mb-5 brutal-shadow">
+        <div class="bg-white border border-1 border-dark d-flex align-items-center justify-content-center me-3"
+            style="width: 50px; height: 50px;">
+            <span class="fw-black h3 mb-0 <?= $flash['type'] === 'error' ? 'text-danger' : 'text-success' ?>">
                 <?= $flash['type'] === 'error' ? '✖' : '✔' ?>
             </span>
-            <span class="fw-black text-uppercase">
+        </div>
+
+        <div>
+            <div class="fw-black text-uppercase small opacity-75">
+                <?= $flash['type'] === 'error' ? 'Erreur Système' : 'Succès' ?>
+            </div>
+            <div class="fw-black text-uppercase h5 mb-0">
                 <?= htmlspecialchars($flash['text']) ?>
-            </span>
+            </div>
         </div>
     </div>
 <?php } ?>
@@ -127,58 +135,43 @@
     </div>
 
     <div class="modal fade" id="modalDistribution" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content brutalist-modal border-out">
-            <form action="/don/distribution" method="POST" class="p-4">
-                <header class="modal-header border-bottom-4 d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="fw-black mb-0">DISTRIBUER UN DON</h3>
-                    <button type="button" class="btn-close-brutal" data-bs-dismiss="modal">X</button>
-                </header>
+            <header class="modal-header border-bottom-4 d-flex justify-content-between align-items-center mb-2">
+                <h3 class="fw-black mb-0">DISTRIBUER UN DON</h3>
+                <button type="button" class="btn-close-brutal" data-bs-dismiss="modal">X</button>
+            </header>
 
-                <div class="modal-body p-0">
-                    <div class="mb-4">
-                        <label class="label-brutal mb-3">1. CHOISIR LA VILLE DESTINATAIRE</label>
-                        <div class="row g-2">
-                            <?php foreach ($villes as $v) { ?>
-                                    <div class="col-md-4">
-                                        <label class="brutalist-radio-card">
-                                            <input type="radio" name="id_ville" value="<?= $v['id'] ?>" required>
-                                            <div class="radio-content p-2 text-center">
-                                                <span class="fw-bold text-uppercase"><?= htmlspecialchars($v['nom']) ?></span>
-                                            </div>
-                                        </label>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-    
-                        <div class="mb-4">
-                            <label class="label-brutal mb-3">2. CHOISIR L'ARTICLE À DONNER</label>
-                            <div class="row g-2">
-                                <?php foreach ($articles as $a) { ?>
-                                    <div class="col-md-4">
-                                        <label class="brutalist-radio-card card-blue">
-                                            <input type="radio" name="id_article" value="<?= $a['id'] ?>" required>
-                                            <div class="radio-content p-2 text-center">
-                                                <span class="fw-bold text-uppercase"><?= htmlspecialchars($a['nom']) ?></span>
-                                                <small class="d-block text-muted"><?= htmlspecialchars($a['unite']) ?></small>
-                                            </div>
-                                        </label>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-    
-                        <div class="mb-3">
-                            <label class="label-brutal">3. QUANTITÉ À DISTRIBUER</label>
-                            <input type="number" step="0.01" name="quantite" class="form-control brutalist-input"
-                                placeholder="0.00" min="0.01" required>
-                            <p class="text-muted small mt-2">⚠️ Le système vérifiera automatiquement si le stock est
-                                suffisant.</p>
-                        </div>
+            <form action="/don/distribution" method="POST" class="p-4">
+                <div class="mb-4">
+                    <label class="label-brutal">VILLE DESTINATAIRE</label>
+                    <select name="id_ville" class="form-select brutalist-input" required>
+                        <option value="" selected disabled>Choisir la ville...</option>
+                        <?php foreach ($villes as $v) { ?>
+                                <option value="<?= $v['id'] ?>"><?= htmlspecialchars($v['nom']) ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
     
-                    <button type="submit" class="btn-brutal btn-lime w-100 mt-3">VALIDER LA DISTRIBUTION</button>
+                    <div class="mb-4">
+                        <label class="label-brutal">ARTICLE À DONNER</label>
+                        <select name="id_article" class="form-select brutalist-input" required>
+                            <option value="" selected disabled>Choisir l'article...</option>
+                            <?php foreach ($articles as $a) { ?>
+                                <option value="<?= $a['id'] ?>">
+                                    <?= htmlspecialchars($a['nom']) ?> (<?= htmlspecialchars($a['unite']) ?>)
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+    
+                    <div class="mb-4">
+                        <label class="label-brutal">QUANTITÉ À DISTRIBUER</label>
+                        <input type="number" step="0.01" name="quantite" class="form-control brutalist-input"
+                            placeholder="0.00" min="0.01" required>
+                    </div>
+    
+                    <button type="submit" class="btn-brutal btn-lime w-100">VALIDER L'ENVOI</button>
                 </form>
             </div>
         </div>

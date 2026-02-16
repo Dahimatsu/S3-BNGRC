@@ -1,8 +1,7 @@
 <?php if (isset($flash)) { ?>
     <div
-        class="alert <?= $flash['type'] === 'error' ? 'alert-danger' : 'alert-success' ?> d-flex align-items-center rounded-0 border-4 border-dark p-4 mb-5 brutal-shadow">
-        <div class="bg-white border border-1 border-dark d-flex align-items-center justify-content-center me-3"
-            style="width: 50px; height: 50px;">
+        class="alert <?= $flash['type'] === 'error' ? 'alert-danger' : 'alert-success' ?> d-flex align-items-center rounded-0 border-1 border-dark p-4 mb-1 brutal-shadow">
+        <div class="bg-white border border-1 border-dark d-flex align-items-center justify-content-center me-3">
             <span class="fw-black h3 mb-0 <?= $flash['type'] === 'error' ? 'text-danger' : 'text-success' ?>">
                 <?= $flash['type'] === 'error' ? '✖' : '✔' ?>
             </span>

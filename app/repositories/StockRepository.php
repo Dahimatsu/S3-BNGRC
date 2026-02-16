@@ -38,13 +38,11 @@ class StockRepository
 
     public function getAvailableStock($id_article)
     {
-        // 1. Total reçu
         $query = "SELECT SUM(quantite_recue) FROM stock_dons WHERE id_article = ?";
         $st = $this->pdo->prepare($query);
         $st->execute([$id_article]);
         $totalRecu = $st->fetchColumn() ?: 0;
 
-        // 2. Total distribué (nouvelle version simplifiée)
         $queryDist = "SELECT SUM(quantite_donnee) FROM distributions WHERE id_article = ?";
         $stDist = $this->pdo->prepare($queryDist);
         $stDist->execute([$id_article]);

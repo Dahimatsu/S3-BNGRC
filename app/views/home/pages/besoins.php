@@ -10,7 +10,7 @@
                     <h3 class="fw-black mb-0">FORMULAIRE</h3>
                 </div>
                 <p class="mb-4">Saisir les nouveaux besoins.</p>
-
+            <form action="/besoin/save" method="post">
                 <select name="id_ville" class="form-select mb-3" required>
                     <option value="" selected disabled>Choisir une ville</option>
                     <?php foreach ($villes as $ville): ?>
@@ -28,14 +28,14 @@
                         </option>
                     <?php endforeach; ?>
                 </select>
-
-                <input type="number" class="form-control mb-5" placeholder="Quantité de besoin">
-
+                <input type="number" name="quantite" class="form-control mb-5" placeholder="Quantité de besoin">
+                
                 <a href="#"
-                    class="btn-lime w-100 text-center text-decoration-none">
-                    ENREGISTRER UN BESOIN
-                </a>
-            </div>
+                class="btn-lime w-100 text-center text-decoration-none">
+                ENREGISTRER UN BESOIN
+            </a>
+        </form>
+        </div>
         </article>
 
     </section>

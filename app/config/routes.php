@@ -41,8 +41,16 @@ $router->group('', function(Router $router) use ($app) {
         HomeController::showHome($app);
     });
 
-    $router->get('/besoin', function () use ($app) {
-        BesoinController::showBesoin($app);
+    $router->group('/besoin', function () use ($router, $app) {
+
+        $router->get('', function () use ($app) {
+            BesoinController::showBesoin($app);
+        });
+
+        $router->post('/save', function () use ($app) {
+            BesoinController::saveBesoin($app);
+        });
+
     });
 
     $router->group('/don', function () use ($router, $app) {

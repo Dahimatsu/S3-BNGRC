@@ -12,21 +12,21 @@ class BesoinRepository
     {
         $this->pdo = $pdo;
     }
+    
+    public function createBesoin($id_ville, $id_article, $quantite)
+    {
+        $query = "INSERT INTO besoins_villes (id_ville, id_article, quantite_demandee) 
+                  VALUES (?, ?, ?)";
 
-    // public function create($email, $hash)
-    // {
-    //     $query = "INSERT INTO user(email, password)
-    //   			  VALUES(?,?)";
+        $st = $this->pdo->prepare($query);
+        $st->execute([
+            $id_ville,
+            $id_article,
+            $quantite
+        ]);
 
-    //     $st = $this->pdo->prepare($query);
-
-    //     $st->execute([
-    //         (string) $email,
-    //         (string) $hash,
-    //     ]);
-
-    //     return $this->pdo->lastInsertId();
-    // }
+        return $this->pdo->lastInsertId();
+    }
 
     public function getAllVille()
     {

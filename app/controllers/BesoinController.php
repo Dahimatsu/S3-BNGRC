@@ -28,4 +28,21 @@ class BesoinController
             'articles' => $articles
         ]);
     }
+
+    public static function saveBesoin($app)
+    {
+        $pdo = $app->db();
+        $stockRepo = new StockRepository($pdo);
+        $villeRepo = new BesoinRepository($pdo);
+        $id_ville = $app->request()->data->id_ville;
+        $id_article = $app->request()->data->id_article;
+        $quantite = $app->request()->data->quantite;
+
+        try{
+            $villeRepo->createBesoin($id_ville, $id_article, $quantite);
+            $app->redirect('/besoin');
+        } catch (\Exception $e) {
+            echo "Erreur lors de l'enregistrement : " . $e->getMessage();
+        }
+    }
 }

@@ -1,0 +1,19 @@
+PAGE Besoins
+
+donnee utiles :
+    - ville (id_ville)
+    - article (id_article)
+    - quantite du produit choisi (quantite)
+
+formulaire de saisie :
+    - selection de la ville (liste deroulante)
+    - selection de l'article (liste deroulante)
+    - saisie de la quantite (champ de texte)
+    - bouton de validation (submit)
+    
+traitement des données :
+    - recuperation des données saisies
+    - validation des données (verifier que la quantite est un nombre positif)
+    - enregistrement des besoins dans la base de données (inserer une nouvelle ligne dans la table des besoins avec les id_ville, id_article et quantite)
+    - affichage d'un message de confirmation ou d'erreur selon le resultat de l'enregistrement
+    

@@ -3,9 +3,9 @@
     <p class="text-muted small">Page de gestion des dons.</p>
 </header>
 <main class="container mt-5">
-    <div class="row g-5">
-        <div class="col-md-6">
-            <div class="brutalist-card bg-white p-4 h-100">
+    <section class="row g-5">
+        <article class="col-md-6">
+            <div class="don-card bg-white p-4 h-100">
                 <div class="d-flex align-items-center mb-3">
                     <span class="badge-brutal me-3">IN</span>
                     <h3 class="fw-black mb-0">RÉCEPTION</h3>
@@ -14,14 +14,14 @@
                 <p class="mb-4">Saisir les nouveaux dons reçus.</p>
                 
                 <a href="#"
-                    class="btn-brutal btn-lime w-100 text-center text-decoration-none">
+                    class="btn-lime w-100 text-center text-decoration-none">
                     ENREGISTRER UN DON
                 </a>
             </div>
-        </div>
+        </article>
 
-        <div class="col-md-6">
-            <div class="brutalist-card bg-white p-4 h-100">
+        <article class="col-md-6">
+            <div class="don-card bg-white p-4 h-100">
                 <div class="d-flex align-items-center mb-3">
                     <span class="badge-brutal me-3">OUT</span>
                     <h3 class="fw-black mb-0">DISTRIBUTION</h3>
@@ -30,11 +30,11 @@
                 <p class="mb-4">Attribuer les dons disponibles aux besoins saisis par ville.</p>
                 
                 <a href="#"
-                    class="btn-brutal btn-lime w-100 text-center text-decoration-none">
+                    class="btn-lime w-100 text-center text-decoration-none">
                     DISTRIBUER LES DONS
                 </a>
             </div>
-        </div>
+        </article>
 
-    </div>
+    </section>
 </main>

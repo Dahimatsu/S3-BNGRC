@@ -15,7 +15,7 @@ $cspNonce = Flight::get('csp_nonce');
 
 $links = [
     ['href' => '/accueil', 'label' => 'Accueil'],
-    ['href' => '/besoins', 'label' => 'Besoins'],
+    ['href' => '/besoin', 'label' => 'Besoins'],
     ['href' => '/don', 'label' => 'Dons'],
     ['href' => '/dashboard', 'label' => 'Dashboard'],
 ];

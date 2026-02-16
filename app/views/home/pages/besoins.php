@@ -5,7 +5,7 @@
 <main class="container mt-5">
     <section class="row g-5">
         <article class="col-md-12 ">
-            <div class="don-card bg-white p-4 h-100 rounded shadow-sm">
+            <div class="don-card bg-white p-4 h-100">
                 <div class="d-flex align-items-center mb-3">
                     <h3 class="fw-black mb-0">FORMULAIRE</h3>
                 </div>
@@ -31,7 +31,7 @@
                 <input type="number" name="quantite" class="form-control mb-5" placeholder="Quantité de besoin">
                 
                 <a href="#"
-                class="btn-lime w-100 text-center text-decoration-none">
+                class="btn-lime btn-brutal w-100 text-center text-decoration-none">
                 ENREGISTRER UN BESOIN
             </a>
         </form>

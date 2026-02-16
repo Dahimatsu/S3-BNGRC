@@ -42,7 +42,7 @@ body {
 }
 
 .btn-lime:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     background-color: #b8e600 !important;
     box-shadow: 0 0 15px rgba(204, 255, 0, 0.4);
 }

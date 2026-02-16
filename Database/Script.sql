@@ -44,10 +44,12 @@ CREATE TABLE besoins_villes (
 CREATE TABLE stock_dons (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_article INT NOT NULL,
-    quantite_reue DECIMAL(15, 2) NOT NULL,
+    quantite_recue DECIMAL(15, 2) NOT NULL,
     date_reception DATE NOT NULL,
     FOREIGN KEY (id_article) REFERENCES articles(id)
 );
+
+drop table stock_dons;
 
 -- 6. Attribution des dons aux besoins [cite: 15]
 CREATE TABLE distributions (
@@ -84,7 +86,7 @@ INSERT INTO besoins_villes (id_ville, id_article, quantite_demandee) VALUES
     (2, 3, 200.00);  -- Toamasina a besoin de 200 Tôles
 
 -- 5. Saisie des dons reçus (Stock global) [cite: 14]
-INSERT INTO stock_dons (id_article, quantite_reue, date_reception) VALUES
+INSERT INTO stock_dons (id_article, quantite_recue, date_reception) VALUES
     (1, 1000.00, '2026-02-16'), -- 1000kg de Riz reçus
     (3, 150.00, '2026-02-16'),  -- 150 Tôles reçues
     (5, 500000.00, '2026-02-16'); -- 500.000 Ar reçus

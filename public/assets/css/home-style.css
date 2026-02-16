@@ -94,8 +94,48 @@ body {
 }
 
 .don-card {
-    border: 1px solid var(--dark-bg);
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    border: 2px solid var(--dark-bg);
 }
 
+.badge-brutal {
+    background: var(--lime-color);
+    padding: 5px 12px;
+    font-weight: 900;
+    display: inline-block;  
+}
+
+.badge-blue {
+    background: #0066ff;
+    color: white;
+}
+
+.btn-brutal {
+    display: block;
+    padding: 15px;
+    border: 2px solid var(--dark-bg);
+    font-weight: 900;
+    color: var(--dark-bg);
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.btn-brutal:active {
+    transform: translate(6px, 6px);
+}
+
+.badge-brutal {
+    padding: 5px 12px !important;
+    border: 2px solid var(--dark-bg);
+    font-weight: 900;
+    display: inline-block;  
+}
+
+.badge-in {
+    background-color: var(--lime-color);
+    color: white;
+}
+
+.badge-out {
+    background-color: #ff3300;
+    color: white;
+}

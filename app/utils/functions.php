@@ -8,3 +8,8 @@ function isInvalid($field, $errors): string
 {
     return $errors[$field] !== '' ? 'is-invalid' : '';
 }
+
+function formatNumber($number): string
+{
+    return number_format($number, 2, ',', ' ');
+}

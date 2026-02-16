@@ -38,21 +38,16 @@ class StockRepository
 
     public function getAvailableStock($id_article)
     {
-        $query = "SELECT SUM(quantite_recue) as total FROM stock_dons WHERE id_article = ?";
-
+        // 1. Total reçu
+        $query = "SELECT SUM(quantite_recue) FROM stock_dons WHERE id_article = ?";
         $st = $this->pdo->prepare($query);
         $st->execute([$id_article]);
-
         $totalRecu = $st->fetchColumn() ?: 0;
 
-        $queryDist = "SELECT SUM(d.quantite_donnee) 
-                      FROM distributions d
-                      JOIN besoins_villes bv ON d.id_besoin = bv.id
-                      WHERE bv.id_article = ?";
-
+        // 2. Total distribué (nouvelle version simplifiée)
+        $queryDist = "SELECT SUM(quantite_donnee) FROM distributions WHERE id_article = ?";
         $stDist = $this->pdo->prepare($queryDist);
         $stDist->execute([$id_article]);
-
         $totalDistribue = $stDist->fetchColumn() ?: 0;
 
         return $totalRecu - $totalDistribue;
@@ -60,28 +55,17 @@ class StockRepository
 
     public function getGlobalStockStatus()
     {
-        $query = "SELECT a.nom, a.unite, SUM(s.quantite_recue) as total_stock
-                  FROM articles a
-                  LEFT JOIN stock_dons s ON a.id = s.id_article
-                  GROUP BY a.id, a.nom, a.unite";
+        $query = "SELECT 
+                a.nom, 
+                a.unite, 
+                (
+                    IFNULL((SELECT SUM(quantite_recue) FROM stock_dons WHERE id_article = a.id), 0) - 
+                    IFNULL((SELECT SUM(quantite_donnee) FROM distributions WHERE id_article = a.id), 0)
+                ) as total_stock
+              FROM articles a
+              GROUP BY a.id, a.nom, a.unite";
 
         $stmt = $this->pdo->query($query);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function getPendingNeeds()
-    {
-        $query = "SELECT bv.id, v.nom as ville, a.nom as article, a.unite, a.id as id_article,
-              bv.quantite_demandee - IFNULL(SUM(d.quantite_donnee), 0) as reste
-              FROM besoins_villes bv
-              JOIN villes v ON bv.id_ville = v.id
-              JOIN articles a ON bv.id_article = a.id
-              LEFT JOIN distributions d ON d.id_besoin = bv.id
-              GROUP BY bv.id
-              HAVING reste > 0";
-        
-        $stmt = $this->pdo->query($query);
-
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

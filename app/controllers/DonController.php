@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\repositories\StockRepository;
+use app\repositories\VilleRepository;
 
 class DonController
 {
@@ -10,21 +11,22 @@ class DonController
     {
         $pdo = $app->db();
         $stockRepo = new StockRepository($pdo);
+        $villeRepo = new VilleRepository($pdo);
 
         $flash = $_SESSION['flash_message'] ?? null;
         unset($_SESSION['flash_message']);
 
         $articles = $stockRepo->getAllArticles();
         $globalStock = $stockRepo->getGlobalStockStatus();
-        $besoins = $stockRepo->getPendingNeeds(); 
+        $villes = $villeRepo->getAllVille();
 
         $app->render('home/layout', [
             'page' => 'dons',
             'title' => 'Gestion des Dons',
             'articles' => $articles,
             'globalStock' => $globalStock,
-            'besoins' => $besoins,
-            'flash' => $flash
+            'flash' => $flash,
+            'villes' => $villes
         ]);
     }
 

@@ -11,30 +11,30 @@ CREATE TABLE user (
 
 -- 1. Les Régions
 CREATE TABLE regions (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id  INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL
 );
 
 -- 2. Les Villes
 CREATE TABLE villes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL,
+    id        INT AUTO_INCREMENT PRIMARY KEY,
+    nom       VARCHAR(100) NOT NULL,
     id_region INT NOT NULL,
     FOREIGN KEY (id_region) REFERENCES regions(id)
 );
 
 -- 3. Les types d'articles (Riz, Tôle, Argent...)
 CREATE TABLE articles (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL,
+    id    INT AUTO_INCREMENT PRIMARY KEY,
+    nom   VARCHAR(100) NOT NULL,
     unite VARCHAR(20) NOT NULL
 );
 
 -- 4. Besoins saisis par ville
 CREATE TABLE besoins_villes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    id_ville INT NOT NULL,
-    id_article INT NOT NULL,
+    id                INT AUTO_INCREMENT PRIMARY KEY,
+    id_ville          INT NOT NULL,
+    id_article        INT NOT NULL,
     quantite_demandee DECIMAL(15, 2) NOT NULL,
     FOREIGN KEY (id_ville) REFERENCES villes(id),
     FOREIGN KEY (id_article) REFERENCES articles(id)
@@ -42,8 +42,8 @@ CREATE TABLE besoins_villes (
 
 -- 5. Saisie des dons reçus (Stock global)
 CREATE TABLE stock_dons (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    id_article INT NOT NULL,
+    id             INT AUTO_INCREMENT PRIMARY KEY,
+    id_article     INT NOT NULL,
     quantite_recue DECIMAL(15, 2) NOT NULL,
     date_reception DATE NOT NULL,
     FOREIGN KEY (id_article) REFERENCES articles(id)

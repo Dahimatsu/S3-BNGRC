@@ -1,18 +1,11 @@
 <?php if (isset($flash)) { ?>
-    <div
-        class="alert <?= $flash['type'] === 'error' ? 'alert-danger' : 'alert-success' ?> d-flex align-items-center rounded-0 border-1 border-dark p-4 mb-1 brutal-shadow">
-        <div class="bg-white border border-1 border-dark d-flex align-items-center justify-content-center me-3">
-            <span class="fw-black h3 mb-0 <?= $flash['type'] === 'error' ? 'text-danger' : 'text-success' ?>">
-                <?= $flash['type'] === 'error' ? '✖' : '✔' ?>
-            </span>
-        </div>
-
+    <div class="alert <?= $flash['type'] === 'error' ? 'alert-danger' : 'alert-success' ?> d-flex align-items-center rounded-0 border-2 border-dark p-3 mb-5 ">
         <div>
             <div class="fw-black text-uppercase small opacity-75">
-                <?= $flash['type'] === 'error' ? 'Erreur Système' : 'Succès' ?>
+                <?= $flash['type'] === 'error' ? 'Erreur' : 'Succès' ?>
             </div>
             <div class="fw-black text-uppercase h5 mb-0">
-                <?= htmlspecialchars($flash['text']) ?>
+                <?= formatText($flash['text']) ?>
             </div>
         </div>
     </div>

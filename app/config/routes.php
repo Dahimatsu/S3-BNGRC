@@ -55,6 +55,10 @@ $router->group('', function(Router $router) use ($app) {
             DonController::saveDon($app);
         });
 
+        $router->post('/distribution', function () use ($app) {
+            DonController::processDistribution($app);
+        });
+
     });
 
     $router->get('/dashboard', function () use ($app) {

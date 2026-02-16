@@ -93,6 +93,7 @@ body {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ccff00' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
 }
 
+.stock-card,
 .don-card {
     border: 2px solid var(--dark-bg);
 }
@@ -101,7 +102,7 @@ body {
     background: var(--lime-color);
     padding: 5px 12px;
     font-weight: 900;
-    display: inline-block;  
+    display: inline-block;
 }
 
 .badge-blue {
@@ -127,7 +128,7 @@ body {
     padding: 5px 12px !important;
     border: 2px solid var(--dark-bg);
     font-weight: 900;
-    display: inline-block;  
+    display: inline-block;
 }
 
 .badge-in {
@@ -138,4 +139,13 @@ body {
 .badge-out {
     background-color: #ff3300;
     color: white;
+}
+
+.btn-close-brutal {
+    background: #000;
+    color: #fff;
+    border: none;
+    font-weight: 900;
+    padding: 5px 12px;
+    cursor: pointer;
 }

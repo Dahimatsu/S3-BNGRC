@@ -30,10 +30,8 @@
                 </select>
                 <input type="number" name="quantite" class="form-control mb-5" placeholder="Quantité de besoin">
                 
-                <a href="#"
-                class="btn-lime btn-brutal w-100 text-center text-decoration-none">
-                ENREGISTRER UN BESOIN
-            </a>
+                <button type="submit" class="btn-brutal btn-lime w-100">ENREGISTRER LE BESOIN</button>
+
         </form>
         </div>
         </article>

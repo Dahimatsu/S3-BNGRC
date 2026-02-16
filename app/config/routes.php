@@ -7,6 +7,8 @@ use flight\net\Router;
 use app\controllers\AuthController;
 use app\controllers\HomeController;
 use app\controllers\DonController;
+use app\controllers\BesoinController;
+use app\controllers\DashboardController;
 
 /** 
  * @var Router $router 
@@ -39,12 +41,16 @@ $router->group('', function(Router $router) use ($app) {
         HomeController::showHome($app);
     });
 
-    $router->get('/accueil', function () use ($app) {
-        HomeController::showHome($app);
+    $router->get('/besoin', function () use ($app) {
+        BesoinController::showBesoin($app);
     });
 
     $router->get('/don', function () use ($app) {
         DonController::showDon($app);
+    });
+
+    $router->get('/dashboard', function () use ($app) {
+        DashboardController::showDashboard($app);
     });
     
     $router->get('/404', function(){

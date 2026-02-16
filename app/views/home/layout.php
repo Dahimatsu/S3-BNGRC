@@ -56,7 +56,18 @@ $links = [
                     </li>
                 <?php } ?>
             </ul>
-            <a href="/don" class="btn btn-lime">Faire un don</a>
+            <div class="dropdown">
+                <button class="btn btn-lime dropdown-toggle" type="button" id="profileMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-fill me-2"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="profileMenu">
+                    <li><a class="dropdown-item" href="/profil"><?= formatText($user['email']) ?></a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item text-danger" href="/logout">Déconnexion</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>

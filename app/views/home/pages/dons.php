@@ -76,7 +76,7 @@
                     <h3 class="fw-black mb-0">NOUVEAU DON</h3>
                     <button type="button" class="btn-close-brutal" data-bs-dismiss="modal">X</button>
                 </header>
-                <form action="<?= Flight::request()->base ?>/dons/reception" method="POST">
+                <form action="/don/reception" method="POST">
                     <div class="modal-body p-4">
                         <div class="mb-4">
                             <label class="label-brutal">TYPE D'ARTICLE</label>
@@ -93,7 +93,7 @@
                         <div class="mb-4">
                             <label class="label-brutal">QUANTITÉ REÇUE</label>
                             <input type="number" step="0.01" name="quantite" class="form-control brutalist-input"
-                                placeholder="0.00" required>
+                                placeholder="0.00" min="0" required>
                         </div>
     
                         <div class="mb-2">

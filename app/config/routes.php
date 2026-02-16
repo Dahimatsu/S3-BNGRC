@@ -6,6 +6,7 @@ use flight\net\Router;
 
 use app\controllers\AuthController;
 use app\controllers\HomeController;
+use app\controllers\DonController;
 
 /** 
  * @var Router $router 
@@ -14,7 +15,7 @@ use app\controllers\HomeController;
 
 $router->group('', function(Router $router) use ($app) {
 
-	$router->get('/', function() use ($app) {
+	$router->get('/', function() {
 	    Flight::redirect('/login');
     });
 
@@ -38,6 +39,14 @@ $router->group('', function(Router $router) use ($app) {
         HomeController::showHome($app);
     });
 
+    $router->get('/accueil', function () use ($app) {
+        HomeController::showHome($app);
+    });
+
+    $router->get('/don', function () use ($app) {
+        DonController::showDon($app);
+    });
+    
     $router->get('/404', function(){
         Flight::render('error/404');
     });

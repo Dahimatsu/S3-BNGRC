@@ -30,8 +30,6 @@ $cspNonce = Flight::get('csp_nonce');
             RETOURNER À L'ACCUEIL
         </a>
     </div>
-
-    <div class="error-watermark">Tak'ALO.</div>
 </div>
 
 </body>

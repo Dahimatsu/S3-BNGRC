@@ -75,9 +75,9 @@ return [
 	'database' => [
 		// MySQL Example:
 		'host'     => 'localhost',
-		'dbname'   => 'db_s3_ETU004054',
-		'user'     => 'ETU004054',
-		'password' => 'E1knMlkp',
+		'dbname'   => '4054_fanampy',
+		'user'     => 'root',
+		'password' => '',
 
 		// SQLite Example:
 		// 'file_path' => __DIR__ . $ds . '..' . $ds . 'database.sqlite', // Path to SQLite file

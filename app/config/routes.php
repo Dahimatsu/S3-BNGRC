@@ -15,7 +15,7 @@ use app\controllers\HomeController;
 $router->group('', function(Router $router) use ($app) {
 
 	$router->get('/', function() use ($app) {
-	    Flight::redirect('/accueil');
+	    Flight::redirect('/login');
     });
 
     $router->get('/login', function() use ($app) {
@@ -36,14 +36,6 @@ $router->group('', function(Router $router) use ($app) {
 
     $router->get('/accueil', function() use ($app) {
         HomeController::showHome($app);
-    });
-
-    $router->get('/recherche', function() use ($app) {
-        HomeController::showSearch($app);
-    });
-
-    $router->get('/inventaire', function() use ($app) {
-        HomeController::showInventaire($app);
     });
 
     $router->get('/404', function(){

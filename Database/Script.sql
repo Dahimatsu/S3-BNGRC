@@ -1,8 +1,95 @@
-CREATE OR REPLACE TABLE user (
+CREATE DATABASE 4054_Fanampy;
+
+USE 4054_Fanampy;
+
+CREATE TABLE user (
     id         INT AUTO_INCREMENT PRIMARY KEY,
     email      VARCHAR(255) NOT NULL UNIQUE,
     password   VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-SELECT * FROM user;
+-- 1. Les Régions
+CREATE TABLE regions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL
+);
+
+-- 2. Les Villes
+CREATE TABLE villes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    id_region INT NOT NULL,
+    FOREIGN KEY (id_region) REFERENCES regions(id)
+);
+
+-- 3. Les types d'articles (Riz, Tôle, Argent...)
+CREATE TABLE articles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    unite VARCHAR(20) NOT NULL
+);
+
+-- 4. Besoins saisis par ville
+CREATE TABLE besoins_villes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_ville INT NOT NULL,
+    id_article INT NOT NULL,
+    quantite_demandee DECIMAL(15, 2) NOT NULL,
+    FOREIGN KEY (id_ville) REFERENCES villes(id),
+    FOREIGN KEY (id_article) REFERENCES articles(id)
+);
+
+-- 5. Saisie des dons reçus (Stock global)
+CREATE TABLE stock_dons (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_article INT NOT NULL,
+    quantite_reue DECIMAL(15, 2) NOT NULL,
+    date_reception DATE NOT NULL,
+    FOREIGN KEY (id_article) REFERENCES articles(id)
+);
+
+-- 6. Attribution des dons aux besoins [cite: 15]
+CREATE TABLE distributions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_besoin INT NOT NULL,
+    quantite_donnee DECIMAL(15, 2) NOT NULL,
+    date_distribution DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_besoin) REFERENCES besoins_villes(id)
+);
+
+-- 1. Insertion des Régions
+INSERT INTO regions (nom) VALUES
+    ('Analamanga'),
+    ('Atsinanana');
+
+-- 2. Insertion des Villes
+INSERT INTO villes (nom, id_region) VALUES
+    ('Antananarivo', 1),
+    ('Toamasina', 2),
+    ('Fenerive Est', 2);
+
+-- 3. Articles (Besoins : Nature, Matériaux, Argent)
+INSERT INTO articles (nom, unite) VALUES
+    ('Riz', 'kg'),          -- Nature [cite: 10]
+    ('Huile', 'litre'),      -- Nature [cite: 10]
+    ('Tôle', 'pièce'),       -- Matériaux [cite: 11]
+    ('Clous', 'kg'),         -- Matériaux [cite: 11]
+    ('Argent', 'Ar');        -- Argent [cite: 12]
+
+-- 4. Besoins des sinistrés par ville [cite: 14]
+INSERT INTO besoins_villes (id_ville, id_article, quantite_demandee) VALUES
+    (1, 1, 500.00),  -- Tana a besoin de 500kg de Riz
+    (1, 5, 1000000.00), -- Tana a besoin de 1.000.000 Ar
+    (2, 3, 200.00);  -- Toamasina a besoin de 200 Tôles
+
+-- 5. Saisie des dons reçus (Stock global) [cite: 14]
+INSERT INTO stock_dons (id_article, quantite_reue, date_reception) VALUES
+    (1, 1000.00, '2026-02-16'), -- 1000kg de Riz reçus
+    (3, 150.00, '2026-02-16'),  -- 150 Tôles reçues
+    (5, 500000.00, '2026-02-16'); -- 500.000 Ar reçus
+
+-- 6. Attribution des dons (Distributions) [cite: 15]
+INSERT INTO distributions (id_besoin, quantite_donnee) VALUES
+    (1, 300.00); -- On donne 300kg de Riz sur les 500kg demandés par Tana
+

@@ -56,21 +56,7 @@ $links = [
                     </li>
                 <?php } ?>
             </ul>
-
-            <?php if(!empty($_SESSION['user'])) { ?>
-                <div class="dropdown">
-                    <button class="btn btn-lime dropdown-toggle" type="button" id="profileMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-fill me-2"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="profileMenu">
-                        <li><a class="dropdown-item" href="/profil"><?= formatText($user['email']) ?></a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="/logout">Déconnexion</a></li>
-                    </ul>
-                </div>
-            <?php } else { ?>
-                <a href="/login" class="btn btn-lime">Se Connecter</a>
-            <?php } ?>
+            <a href="/don" class="btn btn-lime">Faire un don</a>
         </div>
     </div>
 </nav>
@@ -94,7 +80,7 @@ $links = [
         </div>
         <hr class="my-4 border-secondary">
         <div class="text-center d-flex flex-column gap-2">
-            <p class="small mb-0"><i class="bi bi-c-circle"></i> Février 2026 - IT University</p>
+            <p class="small mb-0"><i class="bi bi-c-circle"></i> Février 2026 - Fan'AMPY</p>
             <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-2 gap-md-4">
                 <p class="small mb-0">RAVELOMANANTSOA Tony Mahefa - ETU004054</p>
                 <p class="small mb-0 d-none d-md-block">|</p>

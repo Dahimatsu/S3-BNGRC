@@ -24,7 +24,7 @@ class DashboardRepository
                   FROM besoins_villes
                   JOIN villes ON besoins_villes.id_ville = villes.id
                   JOIN articles ON besoins_villes.id_article = articles.id
-                  LEFT JOIN distributions ON besoins_villes.id = distributions.id_besoin
+                  LEFT JOIN distributions ON besoins_villes.id_ville = distributions.id_ville
                   GROUP BY 
                     besoins_villes.id, 
                     villes.nom, 

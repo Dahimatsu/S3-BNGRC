@@ -1,6 +1,26 @@
+<?php if (isset($flash)) { ?>
+    <div
+        class="alert <?= $flash['type'] === 'error' ? 'alert-danger' : 'alert-success' ?> d-flex align-items-center rounded-0 border-4 border-dark p-4 mb-5 brutal-shadow">
+        <div class="bg-white border border-1 border-dark d-flex align-items-center justify-content-center me-3"
+            style="width: 50px; height: 50px;">
+            <span class="fw-black h3 mb-0 <?= $flash['type'] === 'error' ? 'text-danger' : 'text-success' ?>">
+                <?= $flash['type'] === 'error' ? '✖' : '✔' ?>
+            </span>
+        </div>
+
+        <div>
+            <div class="fw-black text-uppercase small opacity-75">
+                <?= $flash['type'] === 'error' ? 'Erreur Système' : 'Succès' ?>
+            </div>
+            <div class="fw-black text-uppercase h5 mb-0">
+                <?= htmlspecialchars($flash['text']) ?>
+            </div>
+        </div>
+    </div>
+<?php } ?>
 <header class="mb-0">
     <h2 class="fw-bold title">FAIRE UN DON<span style="color: var(--lime-color)">.</span></h2>
-    <p class="text-muted small">Page de gestion des dons.</p>
+    <p class="text-muted small">Suivi des collectes et distributions pour les sinistrés.</p>
 </header>
 <main class="container mt-5">
     <section class="row g-5">
@@ -29,9 +49,12 @@
                 <p class="text-uppercase small fw-bold">Affectation aux sinistrés</p>
                 <p class="mb-4">Attribuer les dons disponibles aux besoins saisis par ville.</p>
 
-                <a href="#" class="btn-brutal btn-lime w-100 text-center text-decoration-none">
+                <button type="button" 
+                        class="btn-brutal btn-lime w-100 text-center text-uppercase" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#modalDistribution">
                     DISTRIBUER LES DONS
-                </a>
+                </button>
             </div>
         </article>
     </section>
@@ -69,6 +92,7 @@
             <?php } ?>
         </div>
     </section>
+
     <div class="modal fade" id="modalReception" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content brutalist-modal">
@@ -82,11 +106,11 @@
                             <label class="label-brutal">TYPE D'ARTICLE</label>
                             <select name="id_article" class="form-select brutalist-input" required>
                                 <option value="" selected disabled>Choisir un article</option>
-                                <?php foreach ($articles as $article): ?>
+                                <?php foreach ($articles as $article) { ?>
                                     <option value="<?= $article['id'] ?>">
                                         <?= formatText($article['nom']) ?> (<?= formatText($article['unite']) ?>)
                                     </option>
-                                <?php endforeach; ?>
+                                <?php } ?>
                             </select>
                         </div>
     
@@ -105,6 +129,49 @@
                     <div class="modal-footer border-0 p-4 pt-0">
                         <button type="submit" class="btn-brutal btn-lime w-100">CONFIRMER LA RÉCEPTION</button>
                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalDistribution" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content brutalist-modal border-out">
+            <header class="modal-header border-bottom-4 d-flex justify-content-between align-items-center mb-2">
+                <h3 class="fw-black mb-0">DISTRIBUER UN DON</h3>
+                <button type="button" class="btn-close-brutal" data-bs-dismiss="modal">X</button>
+            </header>
+
+            <form action="/don/distribution" method="POST" class="p-4">
+                <div class="mb-4">
+                    <label class="label-brutal">VILLE DESTINATAIRE</label>
+                    <select name="id_ville" class="form-select brutalist-input" required>
+                        <option value="" selected disabled>Choisir la ville...</option>
+                        <?php foreach ($villes as $v) { ?>
+                                <option value="<?= $v['id'] ?>"><?= htmlspecialchars($v['nom']) ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+    
+                    <div class="mb-4">
+                        <label class="label-brutal">ARTICLE À DONNER</label>
+                        <select name="id_article" class="form-select brutalist-input" required>
+                            <option value="" selected disabled>Choisir l'article...</option>
+                            <?php foreach ($articles as $a) { ?>
+                                <option value="<?= $a['id'] ?>">
+                                    <?= htmlspecialchars($a['nom']) ?> (<?= htmlspecialchars($a['unite']) ?>)
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+    
+                    <div class="mb-4">
+                        <label class="label-brutal">QUANTITÉ À DISTRIBUER</label>
+                        <input type="number" step="0.01" name="quantite" class="form-control brutalist-input"
+                            placeholder="0.00" min="0.01" required>
+                    </div>
+    
+                    <button type="submit" class="btn-brutal btn-lime w-100">VALIDER L'ENVOI</button>
                 </form>
             </div>
         </div>

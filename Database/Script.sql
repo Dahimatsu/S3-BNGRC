@@ -54,11 +54,13 @@ drop table stock_dons;
 -- 6. Attribution des dons aux besoins [cite: 15]
 CREATE TABLE distributions (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_besoin INT NOT NULL,
+    id_article INT NOT NULL,
     quantite_donnee DECIMAL(15, 2) NOT NULL,
     date_distribution DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_besoin) REFERENCES besoins_villes(id)
+    FOREIGN KEY (id_article) REFERENCES articles(id)
 );
+
+drop table distributions;
 
 -- 1. Insertion des Régions
 INSERT INTO regions (nom) VALUES
@@ -92,6 +94,6 @@ INSERT INTO stock_dons (id_article, quantite_recue, date_reception) VALUES
     (5, 500000.00, '2026-02-16'); -- 500.000 Ar reçus
 
 -- 6. Attribution des dons (Distributions) [cite: 15]
-INSERT INTO distributions (id_besoin, quantite_donnee) VALUES
+INSERT INTO distributions (id_article, quantite_donnee) VALUES
     (1, 300.00); -- On donne 300kg de Riz sur les 500kg demandés par Tana
 

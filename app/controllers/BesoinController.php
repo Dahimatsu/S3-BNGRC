@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\repositories\StockRepository;
 use app\repositories\BesoinRepository;
 
+use Flight;
+
 class BesoinController
 {
     public static function showBesoin($app)

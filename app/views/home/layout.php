@@ -10,7 +10,9 @@ $user = $_SESSION['user'] ?? '';
 $cspNonce = Flight::get('csp_nonce');
 
 $links = [
-    ['href' => '/accueil', 'label' => 'Accueil']
+    ['href' => '/accueil', 'label' => 'Accueil'],
+    ['href' => '/don', 'label' => 'Dons'],
+    ['href' => '/dashboard', 'label' => 'Dashboard'],
 ];
 ?>
 <!DOCTYPE html>
@@ -85,7 +87,7 @@ $links = [
             </a>
             <div class="col-md-6 text-center text-md-end">
                 <div class="d-flex justify-content-center justify-content-md-end gap-3">
-                    <a href="#" class="footer-lime-text fs-4"><i class="bi bi-github"></i></a>
+                    <a href="https://github.com/Dahimatsu/S3-BNGRC" target="_blank" rel="noopener noreferrer" class="footer-lime-text fs-4"><i class="bi bi-github"></i></a>
                 </div>
             </div>
         </div>

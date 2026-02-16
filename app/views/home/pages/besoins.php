@@ -4,7 +4,7 @@
 </header>
 <main class="container mt-5">
     <section class="row g-5">
-        <article class="col-md-12">
+        <article class="col-md-12 ">
             <div class="don-card bg-white p-4 h-100 rounded shadow-sm">
                 <div class="d-flex align-items-center mb-3">
                     <h3 class="fw-black mb-0">FORMULAIRE</h3>
@@ -25,7 +25,7 @@
                     <option value="">Catégorie 3</option>
                 </select>
 
-                <input type="number" class="form-control mb-3" placeholder="Quantité de besoin">
+                <input type="number" class="form-control mb-5" placeholder="Quantité de besoin">
 
                 <a href="#"
                     class="btn-lime w-100 text-center text-decoration-none">

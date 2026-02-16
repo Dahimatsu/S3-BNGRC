@@ -1,40 +1,63 @@
-<header class="mb-0">
-    <h2 class="fw-bold title">Tableau de bord<span style="color: var(--lime-color)">.</span></h2>
-    <p class="text-muted small">Page pour consulter l'historique des dons.</p>
+<header class="mb-5">
+    <h2 class="fw-black title text-uppercase">Tableau de bord<span style="color: var(--lime-color)">.</span></h2>
+    <p class="text-muted small">Historique complet des besoins et des distributions par ville.</p>
 </header>
 
-<main class="container mt-5">
-    <section class="row g-5">
-        <article class="col-md-12">
-            <div class="don-card bg-white p-4 h-100 rounded shadow-sm">
-                <div class="d-flex align-items-center mb-3">
-                    <h3 class="fw-black mb-0">HISTORIQUE</h3>
-                </div>
-                <p class="mb-4">Récapitulatif des besoins et des dons.</p>
-
-                <div class="table-responsive">
-                    <table class="table table-borderless">
-                        <thead class="text-muted small">
-                            <tr>
-                                <th>Villes</th>
-                                <th>Besoin</th>
-                                <th>Quantité demandée</th>
-                                <th>Quantité donnée</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($dashboard as $history) { ?>
-                                <tr class="border-top">
-                                    <td class="py-3"><?php echo $history['nomVille']; ?></td>
-                                    <td class="py-3"><?php echo $history['nomArticle']; ?></td>
-                                    <td class="py-3"><?php echo $history['qteDemandee']; ?></td>
-                                    <td class="py-3 fw-bold"><?php echo $history['qteDonnee']; ?></td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </article>
-    </section>
-</main>
+<div class="table-responsive">
+    <table class="table table-hover border-dark align-middle">
+        <thead class="bg-light border-bottom border-4 border-dark">
+            <tr class="text-uppercase fw-black small">
+                <th class="py-3">Villes</th>
+                <th class="py-3">Article</th>
+                <th class="py-3 text-end">Objectif</th>
+                <th class="py-3 text-end">Distribué</th>
+                <th class="py-3 text-center">Progression</th>
+                <th class="py-3 text-center">État</th>
+            </tr>
+        </thead>
+        <tbody class="fw-bold">
+            <?php foreach ($dashboard as $history) {
+                $demande = (float) $history['qteDemandee'];
+                $donnee = (float) $history['qteDonnee'];
+                $unite = formatText($history['unite']);
+            
+                $pourcentage = ($demande > 0) ? ($donnee / $demande) * 100 : ($donnee > 0 ? 100 : 0);
+                $termine = ($pourcentage >= 100);
+                ?>
+                <tr class="border-bottom border-2">
+                    <td class="py-3"><?= formatText($history['nomVille']) ?></td>
+                    <td class="py-3"><?= formatText($history['nomArticle']) ?></td>
+        
+                    <td class="py-3 text-end text-muted small">
+                        <?= formatNumber($demande) ?> <span class="ms-1"><?= $unite ?></span>
+                    </td>
+                    <td class="py-3 text-end">
+                        <?= formatNumber($donnee) ?> <span class="ms-1"><?= $unite ?></span>
+                    </td>
+        
+                    <td class="py-3 text-center" style="min-width: 150px;">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 small fw-black"><?= round($pourcentage) ?>%</span>
+                            <div class="progress rounded-0 border border-2 border-dark w-100"
+                                style="height: 12px; background: #fff;">
+                                <div class="progress-bar <?= $termine ? 'bg-success' : 'bg-lime' ?>" role="progressbar"
+                                    style="width: <?= min(100, $pourcentage) ?>%; background-color: <?= $termine ? '#198754' : 'var(--lime-color)' ?> !important; border-right: 2px solid #000;">
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+        
+                    <td class="py-3 text-end">
+                        <?php if ($termine) { ?>
+                            <span class="bg-success px-2 border-2 border-dark">Complété</span>
+                        <?php } else { ?>
+                            <span class=" text-dark px-2 border-2 border-dark">
+                                <?= formatNumber(max(0, $demande - $donnee)) ?>         <?= $unite ?> RESTANT
+                            </span>
+                        <?php } ?>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>

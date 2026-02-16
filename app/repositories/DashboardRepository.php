@@ -11,30 +11,25 @@ class DashboardRepository
     {
         $this->pdo = $pdo;
     }
- 
+
     public function getDashboard()
     {
         $query = "SELECT 
-                    villes.nom as nomVille, 
-                    articles.nom as nomArticle,
-                    articles.unite as unite,
-                    besoins_villes.quantite_demandee as qteDemandee,
-                    IFNULL(SUM(distributions.quantite_donnee), 0) as qteDonnee,
-                    (besoins_villes.quantite_demandee - IFNULL(SUM(distributions.quantite_donnee), 0)) as resteAFaire
-                  FROM besoins_villes
-                  JOIN villes ON besoins_villes.id_ville = villes.id
-                  JOIN articles ON besoins_villes.id_article = articles.id
-                  LEFT JOIN distributions ON besoins_villes.id_ville = distributions.id_ville
-                  GROUP BY 
-                    besoins_villes.id, 
-                    villes.nom, 
-                    articles.nom, 
-                    articles.unite, 
-                    besoins_villes.quantite_demandee";
-                  
+                v.id as idVille,
+                v.nom as nomVille, 
+                a.id as idArticle,
+                a.nom as nomArticle, 
+                a.unite,
+                bv.quantite_demandee as qteDemandee, 
+                (SELECT IFNULL(SUM(quantite_donnee), 0) 
+                 FROM distributions 
+                 WHERE id_ville = v.id AND id_article = a.id) as qteDonnee
+              FROM besoins_villes bv
+              JOIN villes v ON bv.id_ville = v.id
+              JOIN articles a ON bv.id_article = a.id
+              ORDER BY v.nom ASC, a.nom ASC";
+
         $stmt = $this->pdo->query($query);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
-
-?>

@@ -25,9 +25,10 @@ CREATE TABLE villes (
 
 -- 3. Les types d'articles (Riz, Tôle, Argent...)
 CREATE TABLE articles (
-    id    INT AUTO_INCREMENT PRIMARY KEY,
-    nom   VARCHAR(100) NOT NULL,
-    unite VARCHAR(20) NOT NULL
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    nom           VARCHAR(100) NOT NULL,
+    unite         VARCHAR(20) NOT NULL,
+    prix_unitaire DECIMAL(10,2) DEFAULT 0
 );
 
 -- 4. Besoins saisis par ville
@@ -58,6 +59,17 @@ CREATE TABLE distributions (
     date_distribution DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_article) REFERENCES articles(id),
     FOREIGN KEY (id_ville) REFERENCES villes(id)
+);
+
+CREATE TABLE achats (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_ville INT,
+    id_article INT,
+    quantite DECIMAL(10,2),
+    montant_total DECIMAL(10,2),
+    date_achat DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_ville) REFERENCES villes(id),
+    FOREIGN KEY (id_article) REFERENCES articles(id)
 );
 
 -- 1. Insertion des Régions

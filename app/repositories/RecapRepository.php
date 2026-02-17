@@ -5,11 +5,14 @@ use PDO;
 class RecapRepository
 {
     private PDO $pdo;
-    private int $idArgent = 1; 
+    private int $idArgent; 
 
     public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
+
+        $argentRepo = new ArgentRepository($this->pdo);
+        $this->idArgent = (int) $argentRepo->getArgentId();
     }
 
     public function getFinancialRecap()

@@ -4,11 +4,14 @@ namespace app\repositories;
 class VenteRepository
 {
     private $pdo;
-    private $idArgent = 1;
+    private $idArgent;
 
     public function __construct($pdo)
     {
         $this->pdo = $pdo;
+
+        $argentRepo = new ArgentRepository($this->pdo);
+        $this->idArgent = (int) $argentRepo->getArgentId();
     }
 
     public function effectuerVente($id_article, $quantite)
@@ -24,7 +27,6 @@ class VenteRepository
             return ["success" => false, "message" => "VENTE REFUSÉE : Des villes ont encore besoin de cet article !"];
         }
 
-        // 2. Récupérer PU et % de vente
         $stArt = $this->pdo->prepare("SELECT prix_unitaire, pourcentage_vente FROM articles WHERE id = ?");
         $stArt->execute([$id_article]);
         $art = $stArt->fetch();

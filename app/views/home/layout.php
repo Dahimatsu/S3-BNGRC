@@ -3,13 +3,8 @@ if (!isset($page)) {
     Flight::redirect('/404');
 }
 
-if (empty($_SESSION['user']) === true) {
-    Flight::redirect('/login');
-}
-
 $page = $page ?? 'home';
 $title = $title ?? '';
-$user = $_SESSION['user'] ?? '';
 
 $cspNonce = Flight::get('csp_nonce');
 

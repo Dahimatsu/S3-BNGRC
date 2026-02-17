@@ -48,8 +48,6 @@
     <?php } else { ?>
 
         <?php foreach ($besoins as $villeNom => $articles) { ?>
-
-            <!-- Titre Ville -->
             <div class="mt-5">
                 <h4 class="fw-black text-uppercase border-bottom pb-2">
                     <?= formatText($villeNom) ?>

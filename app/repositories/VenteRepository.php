@@ -21,7 +21,7 @@ class VenteRepository
         $besoinRestant = (float) $st->fetchColumn();
 
         if ($besoinRestant > 0) {
-            return ["success" => false, "message" => "VENTE REFUSÉE : Des villes ont encore de cet article !"];
+            return ["success" => false, "message" => "VENTE REFUSÉE : Des villes ont encore besoin de cet article !"];
         }
 
         // 2. Récupérer PU et % de vente

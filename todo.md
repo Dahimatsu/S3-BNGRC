@@ -1,6 +1,6 @@
 - [x] Préparation du projet 
     - [x] Préparation template MVC -> Flight php
-    - [ ] Création base de données -> 4054_fanampy
+    - [x] Création base de données -> 4054_fanampy
         - [x] Faire un fichier.sql
     - [x] Initialisation lien Github
     - [x] Préparation fichier exel pour la répartition des tâches

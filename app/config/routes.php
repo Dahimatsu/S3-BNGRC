@@ -94,7 +94,7 @@ $router->group('', function(Router $router) use ($app) {
 
     $router->group('/vente', function () use ($router, $app) {
 
-        $router->get('', function () use ($app) {
+        $router->post('', function () use ($app) {
             VenteController::processVente($app);
         });
 

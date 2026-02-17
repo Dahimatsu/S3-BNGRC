@@ -36,4 +36,69 @@
             </div>
         </article>
     </section>
+<section class="mt-5 mb-5">
+    <h3 class="fw-black mb-4 text-uppercase">BESOINS PAR VILLE</h3>
+
+    <?php if (empty($besoins)) { ?>
+
+        <div class="brutalist-card bg-white p-4 text-center">
+            <h4 class="fw-bold m-0">AUCUN BESOIN ENREGISTRÉ</h4>
+        </div>
+
+    <?php } else { ?>
+
+        <?php foreach ($besoins as $villeNom => $articles) { ?>
+
+            <!-- Titre Ville -->
+            <div class="mt-5">
+                <h4 class="fw-black text-uppercase border-bottom pb-2">
+                    <?= formatText($villeNom) ?>
+                </h4>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-2">
+
+                <?php foreach ($articles as $item) { ?>
+
+                    <div class="col">
+                        <div class="stock-card h-100 p-3 bg-white">
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <div class="article-info">
+                                    <span class="text-uppercase small fw-black d-block text-muted">
+                                        Article
+                                    </span>
+                                    <h5 class="fw-black mb-0 text-uppercase">
+                                        <?= formatText($item['articleNom']) ?>
+                                    </h5>
+                                </div>
+
+                                <div class="quantity-info text-end">
+                                    <span class="text-uppercase small fw-black d-block text-muted">
+                                        Demandé
+                                    </span>
+                                    <div class="d-flex align-items-baseline justify-content-end">
+                                        <span class="stock-value me-2">
+                                            <?= formatNumber($item['quantite_demandee']) ?>
+                                        </span>
+                                        <span class="badge-brutal-mini">
+                                            <?= formatText($item['unite']) ?>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                <?php } ?>
+
+            </div>
+
+        <?php } ?>
+
+    <?php } ?>
+</section>
+
+
 </main>

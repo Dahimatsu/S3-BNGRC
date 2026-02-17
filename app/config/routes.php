@@ -10,6 +10,7 @@ use app\controllers\DonController;
 use app\controllers\BesoinController;
 use app\controllers\DashboardController;
 use app\controllers\AchatController;
+use app\controllers\RecapController;
 
 /** 
  * @var Router $router 
@@ -77,6 +78,19 @@ $router->group('', function(Router $router) use ($app) {
     $router->get('/dashboard', function () use ($app) {
         DashboardController::showDashboard($app);
     });
+
+    $router->group('/recapitulatif', function () use ($router, $app) {
+
+        $router->get('', function () use ($app) {
+            RecapController::showRecap($app);
+        });
+
+        $router->get('/ajax', function () use ($app) {
+            RecapController::getRecapData($app);
+
+        });
+
+    }); 
     
     $router->get('/404', function(){
         Flight::render('error/404');

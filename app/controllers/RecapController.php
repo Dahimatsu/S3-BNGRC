@@ -8,17 +8,15 @@ class RecapController
     {
         $app->render('home/layout', [
             'page' => 'recapitulatif',
-            'title' => 'Bilan Financier BNGRC'
+            'title' => 'Bilan Financier'
         ]);
     }
 
-    // Endpoint pour l'actualisation AJAX
     public static function getRecapData($app)
     {
         $repo = new RecapRepository($app->db());
         $data = $repo->getFinancialRecap();
 
-        // Utilisation de tes fonctions formatNumber
         $response = [
             'besoinTotal' => formatNumber($data['besoinTotal'] ?? 0),
             'besoinSatisfait' => formatNumber($data['besoinSatisfait'] ?? 0),

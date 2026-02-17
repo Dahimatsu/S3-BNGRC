@@ -34,6 +34,9 @@ $links = [
     <link rel="stylesheet" type="text/css" href="/assets/bootstrap/icons/bootstrap-icons.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/bootstrap/css/bootstrap.min.css" />
     <script src="/assets/bootstrap/js/bootstrap.bundle.min.js" defer nonce="<?= formatText($cspNonce) ?>"></script>
+    <?php if($page === 'recapitulatif') { ?>
+        <script src="/assets/js/recap-ajax.js" defer nonce="<?= formatText($cspNonce) ?>"></script>
+    <?php } ?>
 </head>
 
 <body class="d-flex flex-column min-vh-100">

@@ -125,13 +125,13 @@
     
                         <div class="mb-4">
                             <label class="label-brutal">QUANTITÉ REÇUE</label>
-                            <input type="number" step="0.01" name="quantite" class="form-control brutalist-input"
+                            <input type="number" step="0.01" name="quantite" class="form-control"
                                 placeholder="0.00" min="0" required>
                         </div>
     
                         <div class="mb-2">
                             <label class="label-brutal">DATE DE RÉCEPTION</label>
-                            <input type="date" name="date_reception" class="form-control brutalist-input"
+                            <input type="date" name="date_reception" class="form-control"
                                 value="<?= date('Y-m-d') ?>" required>
                         </div>
                     </div>
@@ -154,8 +154,8 @@
             <form action="/don/distribution" method="POST" class="p-4">
                 <div class="mb-4">
                     <label class="label-brutal">VILLE DESTINATAIRE</label>
-                    <select name="id_ville" class="form-select brutalist-input" required>
-                        <option value="" selected disabled>Choisir la ville...</option>
+                    <select name="id_ville" class="form-select" required>
+                        <option value="" selected disabled>Choisir la ville</option>
                         <?php foreach ($villes as $v) { ?>
                                 <option value="<?= $v['id'] ?>"><?= formatText($v['nom']) ?></option>
                             <?php } ?>
@@ -164,8 +164,8 @@
     
                     <div class="mb-4">
                         <label class="label-brutal">ARTICLE À DONNER</label>
-                        <select name="id_article" class="form-select brutalist-input" required>
-                            <option value="" selected disabled>Choisir l'article...</option>
+                        <select name="id_article" class="form-select " required>
+                            <option value="" selected disabled>Choisir l'article</option>
                             <?php foreach ($articles as $a) { ?>
                                 <option value="<?= $a['id'] ?>">
                                     <?= formatText($a['nom']) ?> (<?= formatText($a['unite']) ?>)
@@ -199,7 +199,7 @@
                     <div class="mb-4">
                         <label class="label-brutal">VILLE DESTINATAIRE</label>
                         <select name="id_ville" class="form-select brutalist-input" required>
-                            <option value="" selected disabled>Choisir la ville...</option>
+                            <option value="" selected disabled>Choisir la ville</option>
                             <?php foreach ($villes as $v) { ?>
                                     <option value="<?= $v['id'] ?>">
                                         <?= formatText($v['nom']) ?>
@@ -211,7 +211,7 @@
                         <div class="mb-4">
                             <label class="label-brutal">ARTICLE À ACHETER</label>
                             <select name="id_article" class="form-select brutalist-input" required>
-                                <option value="" selected disabled>Choisir l'article...</option>
+                                <option value="" selected disabled>Choisir l'article</option>
                                 <?php foreach ($articles as $a) { ?>
                                     <?php if (strtolower($a['nom']) !== 'argent') { ?>
                                         <option value="<?= $a['id'] ?>">
@@ -232,7 +232,7 @@
                     </div>
     
                     <div class="modal-footer border-0 p-4 pt-0">
-                        <button type="submit" class="btn-brutal btn-blue w-100">CONFIRMER L'ACHAT</button>
+                        <button type="submit" class="btn-brutal btn-lime w-100">CONFIRMER L'ACHAT</button>
                     </div>
                 </form>
             </div>

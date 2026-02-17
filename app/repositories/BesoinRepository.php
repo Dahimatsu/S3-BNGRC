@@ -38,5 +38,20 @@ class BesoinRepository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-   
+    public function getBesoinVille() 
+    {
+        $query = "SELECT * FROM vue_besoins_par_ville";
+        $stmt = $this->pdo->query($query);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getBesoinVille_byId($id_ville)
+    {
+        $query = "SELECT * FROM vue_besoins_par_ville WHERE ville_id = ?";
+        $st = $this->pdo->prepare($query);
+        $st->execute([
+            $id_ville
+        ]);
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

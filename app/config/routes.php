@@ -25,7 +25,7 @@ $router->group('', function(Router $router) use ($app) {
 
 
 	$router->get('/', function() {
-	    Flight::redirect('/login');
+	    Flight::redirect('/accueil');
     });
 
     $router->get('/404', function () {
@@ -34,22 +34,6 @@ $router->group('', function(Router $router) use ($app) {
 
     Flight::map('notFound', function () {
         Flight::redirect('/404?error=PageNotFound');
-    });
-
-    $router->get('/login', function() use ($app) {
-        AuthController::showLogin($app);
-    });
-
-    $router->post('/login', function() use ($app) {
-       AuthController::postLogin($app);
-    });
-
-    $router->post('/api/validate/auth', function() use ($app) {
-        AuthController::validateLoginAjax($app);
-    });
-
-    $router->get('/logout', function(){
-        AuthController::logout();
     });
 
     $router->get('/accueil', function() use ($app) {

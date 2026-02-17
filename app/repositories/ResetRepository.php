@@ -17,16 +17,13 @@ class ResetRepository
         $this->pdo->beginTransaction();
 
         try {
-            // 1. Désactiver les contraintes pour éviter les blocages SQL
             $this->pdo->exec("SET FOREIGN_KEY_CHECKS = 0");
 
-            // 2. Nettoyage des tables de données
             $this->pdo->exec("DELETE FROM achats");
             $this->pdo->exec("DELETE FROM distributions");
             $this->pdo->exec("DELETE FROM stock_dons");
             $this->pdo->exec("DELETE FROM besoins_villes");
 
-            // 3. Insertion des 10 Besoins par défaut
             $besoins = [
                 [1, 1, 500],
                 [1, 2, 200],
@@ -45,7 +42,6 @@ class ResetRepository
                 $stmtBesoin->execute($besoin);
             }
 
-            // 4. Insertion des 10 Dons par défaut
             $dons = [
                 [1, 1000, '2026-02-01'],
                 [2, 500, '2026-02-02'],
@@ -64,15 +60,12 @@ class ResetRepository
                 $stmtDon->execute($d);
             }
 
-            // 5. Réactiver les contraintes
             $this->pdo->exec("SET FOREIGN_KEY_CHECKS = 1");
 
             $this->pdo->commit();
             return true;
         } catch (\Exception $e) {
             $this->pdo->rollBack();
-            // DEBUG : Affiche l'erreur dans les logs de PHP ou via var_dump pour comprendre
-            // error_log($e->getMessage()); 
             return false;
         }
     }

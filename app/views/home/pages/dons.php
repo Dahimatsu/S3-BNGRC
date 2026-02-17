@@ -14,9 +14,9 @@
     <h2 class="fw-bold title">FAIRE UN DON<span style="color: var(--lime-color)">.</span></h2>
     <p class="text-muted small">Suivi des collectes et distributions pour les sinistrés.</p>
 </header>
-<main class="container mt-5">
-    <section class="row g-5">
-        <article class="col-md-4">
+<main class="container mt-2">
+    <section class="row g-4">
+        <article class="col-md-6">
             <div class="don-card bg-white p-4 h-100">
                 <div class="d-flex align-items-center mb-3">
                     <span class="badge-brutal badge-in me-3">IN</span>
@@ -32,7 +32,7 @@
             </div>
         </article>
 
-        <article class="col-md-4">
+        <article class="col-md-6">
             <div class="don-card bg-white p-4 h-100">
                 <div class="d-flex align-items-center mb-3">
                     <span class="badge-brutal badge-out me-3">OUT</span>
@@ -50,7 +50,7 @@
             </div>
         </article>
 
-        <article class="col-md-4">
+        <article class="col-md-6">
             <div class="don-card bg-white p-4 h-100 border-blue">
                 <div class="d-flex align-items-center mb-3">
                     <span class="badge-brutal badge-buy me-3">BUY</span>
@@ -62,6 +62,21 @@
                 <button type="button" class="btn-brutal btn-lime w-100 text-center text-uppercase" 
                         data-bs-toggle="modal" data-bs-target="#modalAchat">
                     EFFECTUER UN ACHAT
+                </button>
+            </div>
+        </article>
+
+        <article class="col-md-6">
+            <div class="don-card bg-white p-4 h-100 border-orange">
+                <div class="d-flex align-items-center mb-3">
+                    <span class="badge-brutal badge-sell me-3">SELL</span>
+                    <h3 class="fw-black mb-0">VENTE</h3>
+                </div>
+                <p class="text-uppercase small fw-bold">Vente de matériel</p>
+                <p class="mb-4">Vendre les surplus de matériel.</p>
+                <button type="button" class="btn-brutal btn-lime w-100 text-uppercase" 
+                        data-bs-toggle="modal" data-bs-target="#modalVente">
+                    EFFECTUER UNE VENTE
                 </button>
             </div>
         </article>
@@ -144,19 +159,19 @@
     </div>
 
     <div class="modal fade" id="modalDistribution" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content brutalist-modal border-out">
-            <header class="modal-header border-bottom-4 d-flex justify-content-between align-items-center mb-2">
-                <h3 class="fw-black mb-0">DISTRIBUER UN DON</h3>
-                <button type="button" class="btn-close-brutal" data-bs-dismiss="modal">X</button>
-            </header>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content brutalist-modal border-out">
+                <header class="modal-header border-bottom-4 d-flex justify-content-between align-items-center mb-2">
+                    <h3 class="fw-black mb-0">DISTRIBUER UN DON</h3>
+                    <button type="button" class="btn-close-brutal" data-bs-dismiss="modal">X</button>
+                </header>
 
-            <form action="/don/distribution" method="POST" class="p-4">
-                <div class="mb-4">
-                    <label class="label-brutal">VILLE DESTINATAIRE</label>
-                    <select name="id_ville" class="form-select" required>
-                        <option value="" selected disabled>Choisir la ville</option>
-                        <?php foreach ($villes as $v) { ?>
+                <form action="/don/distribution" method="POST" class="p-4">
+                    <div class="mb-4">
+                        <label class="label-brutal">VILLE DESTINATAIRE</label>
+                        <select name="id_ville" class="form-select" required>
+                            <option value="" selected disabled>Choisir la ville</option>
+                            <?php foreach ($villes as $v) { ?>
                                 <option value="<?= $v['id'] ?>"><?= formatText($v['nom']) ?></option>
                             <?php } ?>
                         </select>
@@ -187,20 +202,20 @@
     </div>
 
     <div class="modal fade" id="modalAchat" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content brutalist-modal border-blue">
-            <header class="modal-header border-bottom-4 d-flex justify-content-between align-items-center">
-                <h3 class="fw-black mb-0">ACHAT</h3>
-                <button type="button" class="btn-close-brutal" data-bs-dismiss="modal">X</button>
-            </header>
-            
-            <form action="/achat" method="POST">
-                <div class="modal-body p-4">
-                    <div class="mb-4">
-                        <label class="label-brutal">VILLE DESTINATAIRE</label>
-                        <select name="id_ville" class="form-select brutalist-input" required>
-                            <option value="" selected disabled>Choisir la ville</option>
-                            <?php foreach ($villes as $v) { ?>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content brutalist-modal border-blue">
+                <header class="modal-header border-bottom-4 d-flex justify-content-between align-items-center">
+                    <h3 class="fw-black mb-0">ACHAT</h3>
+                    <button type="button" class="btn-close-brutal" data-bs-dismiss="modal">X</button>
+                </header>
+                
+                <form action="/achat" method="POST">
+                    <div class="modal-body p-4">
+                        <div class="mb-4">
+                            <label class="label-brutal">VILLE DESTINATAIRE</label>
+                            <select name="id_ville" class="form-select brutalist-input" required>
+                                <option value="" selected disabled>Choisir la ville</option>
+                                <?php foreach ($villes as $v) { ?>
                                     <option value="<?= $v['id'] ?>">
                                         <?= formatText($v['nom']) ?>
                                     </option>
@@ -233,6 +248,36 @@
     
                     <div class="modal-footer border-0 p-4 pt-0">
                         <button type="submit" class="btn-brutal btn-lime w-100">CONFIRMER L'ACHAT</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalVente" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content brutalist-modal border-orange">
+                <header class="modal-header border-bottom-4 d-flex justify-content-between align-items-center">
+                    <h3 class="fw-black mb-0">VENDRE UN ARTICLE</h3>
+                    <button type="button" class="btn-close-brutal" data-bs-dismiss="modal">X</button>
+                </header>
+                <form action="/vente" method="POST">
+                    <div class="modal-body p-4">
+                        <label class="label-brutal">ARTICLE À VENDRE</label>
+                        <select name="id_article" class="form-select brutalist-input mb-4" required>
+                            <?php foreach ($articles as $a) {
+                                if (strtolower($a['nom']) !== 'argent') { ?>
+                                    <option value="<?= $a['id'] ?>">
+                                        <?= formatText($a['nom']) ?> (Remise:
+                                        <?= $a['pourcentage_vente'] ?>%)
+                                    </option>
+                                <?php }
+                            } ?>
+                        </select>
+                        <label class="label-brutal">QUANTITÉ</label>
+                        <input type="number" step="0.01" name="quantite" class="form-control" required>
+                    </div>
+                    <div class="modal-footer border-0 p-4 pt-0">
+                        <button type="submit" class="btn-brutal btn-lime w-100">CONFIRMER LA VENTE</button>
                     </div>
                 </form>
             </div>

@@ -11,6 +11,8 @@ use app\controllers\BesoinController;
 use app\controllers\DashboardController;
 use app\controllers\AchatController;
 use app\controllers\RecapController;
+use app\controllers\ResetController;
+use app\controllers\VenteController;
 
 /** 
  * @var Router $router 
@@ -21,8 +23,17 @@ $app = Flight::app();
 
 $router->group('', function(Router $router) use ($app) {
 
+
 	$router->get('/', function() {
 	    Flight::redirect('/login');
+    });
+
+    $router->get('/404', function () {
+        Flight::render('error/404');
+    });
+
+    Flight::map('notFound', function () {
+        Flight::redirect('/404?error=PageNotFound');
     });
 
     $router->get('/login', function() use ($app) {
@@ -92,14 +103,14 @@ $router->group('', function(Router $router) use ($app) {
 
         });
 
-    }); 
-    
-    $router->get('/404', function(){
-        Flight::render('error/404');
     });
 
-    Flight::map('notFound', function(){
-        Flight::redirect('/404?error=PageNotFound');
+    $router->get('/reset', function () use ($app) {
+        ResetController::reset($app);
+    });
+
+    $router->post('/vente', function () use ($app) {
+        VenteController::processVente($app);
     });
 	
 }, [ SecurityHeadersMiddleware::class ]);

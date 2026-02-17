@@ -43,7 +43,7 @@ $links = [
     <?php } ?>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column">
 
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm fixed-top">
     <div class="container">
@@ -88,7 +88,7 @@ $links = [
     </div>
 </nav>
 
-<main class="container min-vh-100">
+<main class="container">
     <?php require 'pages/' . $page . '.php'; ?>
 </main>
 

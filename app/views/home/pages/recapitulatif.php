@@ -31,7 +31,7 @@
 
         <div class="col-md-6">
             <div class="brutalist-card bg-white p-4 h-100">
-                <span class="small fw-black text-uppercase opacity-50 d-block mb-2">Dons Reçus (Cash)</span>
+                <span class="small fw-black text-uppercase opacity-50 d-block mb-2">Dons Reçus</span>
                 <h2 id="donsRecus" class="fw-black display-5 mb-0">-- Ar</h2>
                 <div class="mt-3 small text-muted">Total des fonds entrés.</div>
             </div>

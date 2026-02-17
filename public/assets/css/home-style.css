@@ -18,6 +18,8 @@ body {
 
 .nav-link {
     color: #ffffff !important;
+    width: 100px;
+    text-align: center;
     font-weight: 500;
     margin: 0 10px;
     text-transform: capitalize;
@@ -25,7 +27,8 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--lime-color) !important;
+    background-color: var(--lime-color) !important;
+    color: var(--dark-bg) !important;
 }
 
 .btn-lime {
@@ -150,12 +153,11 @@ body {
     cursor: pointer;
 }
 
-/* CACHER LE BOUTON RADIO PAR DÉFAUT */
+
 .brutalist-radio-card input[type="radio"] {
     display: none;
 }
 
-/* LA CARTE DE CONTENU */
 .brutalist-radio-card .radio-content {
     border: 3px solid #000;
     cursor: pointer;
@@ -164,14 +166,13 @@ body {
     box-shadow: 4px 4px 0px #000;
 }
 
-/* EFFET HOVER */
+
 .brutalist-radio-card:hover .radio-content {
     transform: translate(-2px, -2px);
     box-shadow: 6px 6px 0px #000;
     background-color: #f0f0f0;
 }
 
-/* ÉTAT SÉLECTIONNÉ (CHECKED) */
 .brutalist-radio-card input[type="radio"]:checked + .radio-content {
     background-color: var(--lime-color); /* Vert lime pour la sélection */
     transform: translate(2px, 2px);
@@ -182,17 +183,3 @@ body {
     text-decoration: underline;
 }
 
-/* GROUPE AVEC SCROLL SI TROP DE VILLES */
-.needs-radio-group {
-    max-height: 350px;
-    overflow-y: auto;
-    padding-right: 10px;
-}
-
-.needs-radio-group::-webkit-scrollbar {
-    width: 8px;
-}
-
-.needs-radio-group::-webkit-scrollbar-thumb {
-    background: #000;
-}

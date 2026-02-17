@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Tak'ALO | <?= $title ?></title>
+    <title>Fan'AMPY | <?= $title ?></title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
@@ -35,11 +35,10 @@
                 <header>
                     <div class="mb-4 d-flex align-items-center gap-1">
                         <img src="/assets/images/logo.png" style="width: 20px; height: 20px" alt="Logo">
-                        <span class="fs-4">Tak'<span class="fw-bold" style="color: var(--lime-color)">ALO</span></span>
+                        <span class="fs-4">Fan'<span class="fw-bold" style="color: var(--lime-color)">AMPY</span></span>
                     </div>
                 </header>
                 <div>
-                    <p class="small mb-0">On vous souhaite la</p>
                     <h2 class="fs-3">BIENVENUE</h2>
                 </div>
             </aside>
@@ -51,7 +50,7 @@
 
                 <footer class="col-12 pt-5">
                     <div class="d-flex gap-2 w-100 justify-content-center text-muted">
-                        <p class="small"><i class="bi bi-c-circle"></i> 2026 - IT University</p>
+                        <p class="small"><i class="bi bi-c-circle"></i> Février 2026 - Fan'AMPY</p>
                     </div>
                 </footer>
             </section>

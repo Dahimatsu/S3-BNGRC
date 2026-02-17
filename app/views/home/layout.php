@@ -33,6 +33,10 @@ $links = [
     <link rel="stylesheet" type="text/css" href="/assets/css/typography.css" />
     <link rel="stylesheet" type="text/css" href="/assets/bootstrap/icons/bootstrap-icons.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/bootstrap/css/bootstrap.min.css" />
+    <?php if($page === 'home') { ?>
+        <link rel="stylesheet" type="text/css" href="/assets/css/landing-style.css" />
+    <?php } ?>
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap/css/bootstrap.min.css" />
     <script src="/assets/bootstrap/js/bootstrap.bundle.min.js" defer nonce="<?= formatText($cspNonce) ?>"></script>
     <?php if($page === 'recapitulatif') { ?>
         <script src="/assets/js/recap-ajax.js" defer nonce="<?= formatText($cspNonce) ?>"></script>
@@ -57,7 +61,8 @@ $links = [
                 <?php foreach ($links as $link) {
                     $isActive = (
                             strtolower($page) === strtolower($link['label']) ||
-                            ($page === 'home' && $link['label'] === 'Accueil')
+                            ($page === 'home' && $link['label'] === 'Accueil') ||
+                            ($page === 'recapitulatif' && $link['label'] === 'Récapitulatif')
                     ) ? 'active' : '';
                     ?>
                     <li class="nav-item">
@@ -83,7 +88,7 @@ $links = [
     </div>
 </nav>
 
-<main class="container">
+<main class="container min-vh-100">
     <?php require 'pages/' . $page . '.php'; ?>
 </main>
 

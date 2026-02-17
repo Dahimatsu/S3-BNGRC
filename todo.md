@@ -1,24 +1,81 @@
-- [ ] Préparation du projet 
+- [x] Préparation du projet 
     - [x] Préparation template MVC -> Flight php
     - [ ] Création base de données -> 4054_fanampy
-        - [ ] Faire un fichier.sql
+        - [x] Faire un fichier.sql
     - [x] Initialisation lien Github
-    - [ ] Préparation fichier exel pour la répartition des tâches
+    - [x] Préparation fichier exel pour la répartition des tâches
+
+BASES DE DONNEES
+    - [x] Table user
+    - [x] Table articles (Besoins et dons)
+    - [x] Table régions
+    - [x] Table villes
+    - [x] Table besoins_villes
+    - [x] Table stock_dons
+    - [x] Table distributions
+    - [x] Table achats
 
 PAGES
-- [ ] Acceuil
-    - [ ] Style / Affichage
-        - [x] Bienvenue
-        - [ ] Bouton "Faire un don" 
+- [x] Acceuil
+    - [x] Style / Affichage
+        - [x] Titre 
+        - [x] background-image
+    - [x] Integration
+    - [x] Fonction
+    - [x] Base
 
-    - [ ] Integration
+- [x] Besoins
+    - [x] Style / Affichage
+        - [x] Formulaire de saisie pour enregistrer les besoins d'une ville
+        - [x] Liste des besoins par villes
+    - [x] Integration 
+        - [x] Boucle automatique pour la liste des besoins
+    - [x] Fonction
+        - [x] getBesoinVille_byId(id) 
+    - [x] Base
+        - [x] Table villes
+        - [x] Table besoins_villes
+        - [x] Création vue_besoins_par_ville 
 
-    - [ ] Fonction
+- [x] Dons
+    - [x] Style / Affichage
+        - [x] Liste des actions (Réception - Distribution - Achat - Vente)
+        - [x] Liste des stocks 
+    - [x] Integration
+        -  [x] Automatiser la liste des stocks actuels
+    - [x] Fonction
+        - [x] Fonction qui enregistre une réception
+        - [x] Fonction qui distribue vers les villes
+        - [x] Fonction pour acheter du matériel pour une ville 
+        - [x] Fonction pour vendre (surplus de matériel)
+    - [x] Base
+        - [x] Table stock_dons
+        - [x] Table achats
+        - [x] Table distributions
+        - [x] Table ventes
 
-    - [ ] Base
+- [x] Dashboard
+    - [x] Style / Affichage
+        - [x] Liste des besoins par ville, et des dons qui ont déjà été donné à cette ville pour compenser ce besoin
+    - [x] Integration
+        - [x] Automatiser l'affichage des besoins par ville dans un tableau
+    - [x] Fonction
+        - [x] Fonction qui prend la requête dans la base
+    - [x] Base
+        - [x] Table villes
+        - [x] Table besoins_villes
+        - [x] Table articles
+        - [x] Table distributions
 
-- [ ] Faire un don
-    - [ ] Style / Affichage
-    - [ ] Integration
-    - [ ] Fonction
-    - [ ] Base
+- [x] Récaputilatif 
+    - [x] Style / Affichage
+        - [x] Valeur monétaire de tous les besoins déclarés par les villes.
+        - [x] Montant total des ressources déjà envoyées ou achetées.
+        - [x] Total des fonds entrés
+        - [x] Argent envoyé aux villes + achats effectués pour les sinistrés.
+    - [x] Integration
+        - [x] Recuperation dynamique des données dans la base Ajax 
+    - [x] Fonction 
+    - [x] Base
+        - [x] Table besoin_villes
+        - [x] Table articles

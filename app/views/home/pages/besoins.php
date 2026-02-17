@@ -1,6 +1,6 @@
 <header class="mb-0">
     <h2 class="fw-bold title">SAISIE DE BESOIN<span style="color: var(--lime-color)">.</span></h2>
-    <p class="text-muted small">Page de formulaire de saisie.</p>
+    <p class="text-muted small">Inserer les besoins d'une ville.</p>
 </header>
 <main class="container mt-5">
     <section class="row g-5">

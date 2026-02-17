@@ -17,6 +17,8 @@ use app\controllers\RecapController;
  * @var Engine $app
  */
 
+$app = Flight::app();
+
 $router->group('', function(Router $router) use ($app) {
 
 	$router->get('/', function() {

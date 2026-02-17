@@ -180,7 +180,7 @@
                             placeholder="0.00" min="0.01" required>
                     </div>
     
-                    <button type="submit" class="btn-brutal btn-lime w-100">VALIDER L'ENVOI</button>
+                    <button type="submit" class="btn-brutal btn-lime w-100">CONFIRMER LA DISTRIBUTION</button>
                 </form>
             </div>
         </div>

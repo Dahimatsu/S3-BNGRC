@@ -2,7 +2,7 @@
     <h2 class="fw-bold title">SAISIE DE BESOIN<span style="color: var(--lime-color)">.</span></h2>
     <p class="text-muted small">Inserer les besoins d'une ville.</p>
 </header>
-<main class="container mt-5">
+<main class="container mt-1>
     <section class="row g-5">
         <article class="col-md-12 ">
             <div class="don-card bg-white p-4 h-100">
@@ -48,8 +48,6 @@
     <?php } else { ?>
 
         <?php foreach ($besoins as $villeNom => $articles) { ?>
-
-            <!-- Titre Ville -->
             <div class="mt-5">
                 <h4 class="fw-black text-uppercase border-bottom pb-2">
                     <?= formatText($villeNom) ?>

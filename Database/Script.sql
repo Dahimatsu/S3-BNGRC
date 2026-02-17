@@ -1,4 +1,6 @@
-CREATE DATABASE 4054_Fanampy;
+DROP DATABASE IF EXISTS 4054_Fanampy;
+
+CREATE DATABASE 4054_Fanampy CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 USE 4054_Fanampy;
 
@@ -73,6 +75,16 @@ CREATE TABLE achats (
     FOREIGN KEY (id_article) REFERENCES articles(id)
 );
 
+CREATE TABLE ventes (
+    id                  INT AUTO_INCREMENT PRIMARY KEY,
+    id_article          INT,
+    quantite            DECIMAL(10,2),
+    prix_unitaire_vente DECIMAL(15,2),
+    montant_total       DECIMAL(15,2),
+    date_vente          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_article) REFERENCES articles(id)
+);
+
 CREATE VIEW vue_besoins_par_ville AS
 SELECT 
         villes.id as ville_id,
@@ -83,18 +95,15 @@ FROM
 villes JOIN besoins_villes ON villes.id = besoins_villes.id_ville 
 JOIN articles ON besoins_villes.id_article = articles.id;
 
--- 1. Insertion des Régions
 INSERT INTO regions (nom) VALUES
     ('Analamanga'),
     ('Atsinanana');
 
--- 2. Insertion des Villes
 INSERT INTO villes (nom, id_region) VALUES
     ('Antananarivo', 1),
     ('Toamasina', 2),
     ('Fenerive Est', 2);
 
--- 3. Articles (Besoins : Nature, Matériaux, Argent)
 INSERT INTO articles (nom, unite, prix_unitaire, pourcentage_vente) VALUES
     ('Riz', 'kg', 1000.00, 10.00),         
     ('Huile', 'litre', 500.00, 15.00),      
@@ -102,28 +111,16 @@ INSERT INTO articles (nom, unite, prix_unitaire, pourcentage_vente) VALUES
     ('Clous', 'kg', 350.00, 25.00),         
     ('Argent', 'Ar', 1.00, 15.00);       
 
--- 4. Besoins des sinistrés par ville [cite: 14]
+
 INSERT INTO besoins_villes (id_ville, id_article, quantite_demandee) VALUES
-    (1, 1, 500.00),  -- Tana a besoin de 500kg de Riz
-    (1, 5, 1000000.00), -- Tana a besoin de 1.000.000 Ar
-    (2, 3, 200.00);  -- Toamasina a besoin de 200 Tôles
+    (1, 1, 500.00), 
+    (1, 5, 1000000.00), 
+    (2, 3, 200.00);  
 
--- 5. Saisie des dons reçus (Stock global) [cite: 14]
 INSERT INTO stock_dons (id_article, quantite_recue, date_reception) VALUES
-    (1, 1000.00, '2026-02-16'), -- 1000kg de Riz reçus
-    (3, 150.00, '2026-02-16'),  -- 150 Tôles reçues
-    (5, 500000.00, '2026-02-16'); -- 500.000 Ar reçus
+    (1, 1000.00, '2026-02-16'),
+    (3, 150.00, '2026-02-16'),
+    (5, 500000.00, '2026-02-16');
 
--- 6. Attribution des dons (Distributions) [cite: 15]
 INSERT INTO distributions (id_ville, id_article, quantite_donnee) VALUES
-    (1, 1, 300.00); -- On donne 300kg de Riz sur les 500kg demandés par Tana
-
-CREATE TABLE ventes (
-    id                  INT AUTO_INCREMENT PRIMARY KEY,
-    id_article          INT,
-    quantite            DECIMAL(10,2),
-    prix_unitaire_vente DECIMAL(15,2),
-    montant_total       DECIMAL(15,2),
-    date_vente          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_article) REFERENCES articles(id)
-);
+    (1, 1, 300.00); 

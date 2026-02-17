@@ -11,6 +11,11 @@ body {
     padding-top: 90px;
 }
 
+abbr {
+    text-decoration: none !important;
+    cursor: help;
+}
+
 .navbar-custom {
     background-color: var(--dark-bg) !important;
     padding: 1rem 0;

@@ -3,7 +3,6 @@
 namespace app\controllers;
 
 use app\repositories\AchatRepository;
-use app\repositories\VilleRepository;
 
 class AchatController
 {
@@ -27,21 +26,4 @@ class AchatController
         $app->redirect('/don');
     }
 
-    public static function showListeAchats($app)
-    {
-        $db = $app->db();
-        $repo = new AchatRepository($db);
-
-        $villeRepo = new VilleRepository($db);
-
-        $id_ville = $app->request()->query->id_ville;
-
-        $app->render('home/layout', [
-            'page' => 'achats/liste',
-            'title' => 'Historique des Achats',
-            'achats' => $repo->getHistoriqueAchats($id_ville),
-            'villes' => $villeRepo->getAllVille(),
-            'current_ville' => $id_ville
-        ]);
-    }
 }

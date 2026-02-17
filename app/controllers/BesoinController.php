@@ -5,17 +5,10 @@ namespace app\controllers;
 use app\repositories\StockRepository;
 use app\repositories\BesoinRepository;
 
-use Flight;
-
 class BesoinController
 {
     public static function showBesoin($app)
     {
-        if (empty($_SESSION['user']) === true) {
-            Flight::redirect('/login');
-            return;
-        }
-
         $pdo = $app->db();
         $stockRepo = new StockRepository($pdo);
         $ville = new BesoinRepository($pdo);

@@ -80,6 +80,6 @@ class AchatRepository
             $stmt = $this->pdo->query($query);
         }
 
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

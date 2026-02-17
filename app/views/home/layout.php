@@ -3,13 +3,8 @@ if (!isset($page)) {
     Flight::redirect('/404');
 }
 
-if (empty($_SESSION['user']) === true) {
-    Flight::redirect('/login');
-}
-
 $page = $page ?? 'home';
 $title = $title ?? '';
-$user = $_SESSION['user'] ?? '';
 
 $cspNonce = Flight::get('csp_nonce');
 
@@ -73,7 +68,7 @@ $links = [
                 <?php } ?>
             </ul>
             <a class="navbar-brand fw-bold fs-4 d-flex align-items-center gap-1" href="/accueil">
-                <span class=" fw-bold footer-lime-text">BNGRC</span>
+                <span class=" fw-bold footer-lime-text"><abbr title="Bureau National de Gestion des Risques et des Catastrophes">BNGRC</abbr></span>
             </a>
         </div>
     </div>

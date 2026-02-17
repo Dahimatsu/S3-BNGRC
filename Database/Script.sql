@@ -25,10 +25,11 @@ CREATE TABLE villes (
 
 -- 3. Les types d'articles (Riz, Tôle, Argent...)
 CREATE TABLE articles (
-    id            INT AUTO_INCREMENT PRIMARY KEY,
-    nom           VARCHAR(100) NOT NULL,
-    unite         VARCHAR(20) NOT NULL,
-    prix_unitaire DECIMAL(10,2) DEFAULT 0
+    id                INT AUTO_INCREMENT PRIMARY KEY,
+    nom               VARCHAR(100) NOT NULL,
+    unite             VARCHAR(20) NOT NULL,
+    prix_unitaire     DECIMAL(10,2) DEFAULT 0,
+    pourcentage_vente DECIMAL(5,2) DEFAULT 10
 );
 
 -- 4. Besoins saisis par ville
@@ -94,12 +95,12 @@ INSERT INTO villes (nom, id_region) VALUES
     ('Fenerive Est', 2);
 
 -- 3. Articles (Besoins : Nature, Matériaux, Argent)
-INSERT INTO articles (nom, unite, prix_unitaire) VALUES
-    ('Riz', 'kg', 1000.00),         
-    ('Huile', 'litre', 500.00),      
-    ('Tôle', 'pièce', 2500.00),      
-    ('Clous', 'kg', 350.00),         
-    ('Argent', 'Ar', 1.00);       
+INSERT INTO articles (nom, unite, prix_unitaire, pourcentage_vente) VALUES
+    ('Riz', 'kg', 1000.00, 10.00),         
+    ('Huile', 'litre', 500.00, 15.00),      
+    ('Tôle', 'pièce', 2500.00, 25.00),      
+    ('Clous', 'kg', 350.00, 25.00),         
+    ('Argent', 'Ar', 1.00, 15.00);       
 
 -- 4. Besoins des sinistrés par ville [cite: 14]
 INSERT INTO besoins_villes (id_ville, id_article, quantite_demandee) VALUES
@@ -117,4 +118,12 @@ INSERT INTO stock_dons (id_article, quantite_recue, date_reception) VALUES
 INSERT INTO distributions (id_ville, id_article, quantite_donnee) VALUES
     (1, 1, 300.00); -- On donne 300kg de Riz sur les 500kg demandés par Tana
 
-SELECT * FROM articles WHERE nom = 'Argent';
+CREATE TABLE ventes (
+    id                  INT AUTO_INCREMENT PRIMARY KEY,
+    id_article          INT,
+    quantite            DECIMAL(10,2),
+    prix_unitaire_vente DECIMAL(15,2),
+    montant_total       DECIMAL(15,2),
+    date_vente          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_article) REFERENCES articles(id)
+);

@@ -15,7 +15,7 @@ class ArticleRepository
 
     public function getAllArticles()
     {
-        $query = "SELECT id, nom, unite, prix_unitaire FROM articles";
+        $query = "SELECT * FROM articles";
         $stmt = $this->pdo->query($query);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

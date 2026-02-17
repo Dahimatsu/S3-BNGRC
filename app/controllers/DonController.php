@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\repositories\StockRepository;
 use app\repositories\VilleRepository;
+use app\repositories\ArticleRepository;
 
 class DonController
 {
@@ -12,11 +13,12 @@ class DonController
         $pdo = $app->db();
         $stockRepo = new StockRepository($pdo);
         $villeRepo = new VilleRepository($pdo);
+        $articleRepo = new ArticleRepository($pdo);
 
         $flash = $_SESSION['flash_message'] ?? null;
         unset($_SESSION['flash_message']);
 
-        $articles = $stockRepo->getAllArticles();
+        $articles = $articleRepo->getAllArticles();
         $globalStock = $stockRepo->getGlobalStockStatus();
         $villes = $villeRepo->getAllVille();
 

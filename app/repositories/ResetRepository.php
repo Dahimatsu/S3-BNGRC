@@ -17,50 +17,71 @@ class ResetRepository
         $this->pdo->beginTransaction();
 
         try {
+            // 1. Nettoyage ciblé : on ne touche pas aux structures (villes, articles, regions)
             $this->pdo->exec("SET FOREIGN_KEY_CHECKS = 0");
+            $this->pdo->exec("TRUNCATE TABLE achats");
+            $this->pdo->exec("TRUNCATE TABLE distributions");
+            $this->pdo->exec("TRUNCATE TABLE stock_dons");
+            $this->pdo->exec("TRUNCATE TABLE besoins_villes");
+            $this->pdo->exec("SET FOREIGN_KEY_CHECKS = 1");
 
-            $this->pdo->exec("DELETE FROM achats");
-            $this->pdo->exec("DELETE FROM distributions");
-            $this->pdo->exec("DELETE FROM stock_dons");
-            $this->pdo->exec("DELETE FROM besoins_villes");
-
+            // 2. Insertion des 25 BESOINS (Ordre 1 à 26, sans le 16)
             $besoins = [
-                [1, 1, 500],
-                [1, 2, 200],
-                [2, 1, 300],
-                [2, 3, 50],
-                [3, 2, 100],
-                [3, 4, 20],
-                [4, 1, 450],
-                [4, 5, 1000000],
-                [5, 2, 150],
-                [5, 3, 30]
+                [1, 5, 200],
+                [4, 4, 40],
+                [2, 1, 6000000],
+                [1, 3, 1500],
+                [4, 2, 300],
+                [2, 4, 80],
+                [4, 1, 4000000],
+                [3, 5, 150],
+                [2, 2, 500],
+                [3, 1, 8000000],
+                [5, 2, 700],
+                [1, 1, 12000000],
+                [5, 1, 10000000],
+                [3, 3, 1000],
+                [5, 5, 180],
+                [1, 2, 800],
+                [4, 9, 200],
+                [2, 7, 60],
+                [5, 3, 1200],
+                [3, 2, 600],
+                [5, 8, 150],
+                [1, 4, 120],
+                [4, 7, 30],
+                [2, 6, 120],
+                [3, 8, 100]
             ];
-            $sqlBesoin = "INSERT INTO besoins_villes (id_ville, id_article, quantite_demandee) VALUES (?, ?, ?)";
-            $stmtBesoin = $this->pdo->prepare($sqlBesoin);
-            foreach ($besoins as $besoin) {
-                $stmtBesoin->execute($besoin);
+
+            $stmtB = $this->pdo->prepare("INSERT INTO besoins_villes (id_ville, id_article, quantite_demandee) VALUES (?, ?, ?)");
+            foreach ($besoins as $b) {
+                $stmtB->execute($b);
             }
 
             $dons = [
-                [1, 1000, '2026-02-01'],
-                [2, 500, '2026-02-02'],
-                [3, 100, '2026-02-03'],
-                [4, 50, '2026-02-04'],
-                [5, 2000000, '2026-02-05'],
-                [1, 200, '2026-02-06'],
-                [2, 300, '2026-02-07'],
-                [3, 80, '2026-02-08'],
-                [4, 150, '2026-02-09'],
-                [5, 500000, '2026-02-10']
+                [1, 5000000, '2026-02-16'],
+                [1, 3000000, '2026-02-16'],
+                [1, 4000000, '2026-02-17'],
+                [1, 1500000, '2026-02-17'],
+                [1, 6000000, '2026-02-17'],
+                [2, 400, '2026-02-16'],
+                [3, 600, '2026-02-16'],
+                [4, 50, '2026-02-17'],
+                [5, 70, '2026-02-17'],
+                [9, 100, '2026-02-17'],
+                [2, 2000, '2026-02-18'],
+                [4, 300, '2026-02-18'],
+                [3, 5000, '2026-02-18'],
+                [1, 20000000, '2026-02-19'],
+                [5, 500, '2026-02-19'],
+                [9, 88, '2026-02-17']
             ];
-            $sqlDon = "INSERT INTO stock_dons (id_article, quantite_recue, date_reception) VALUES (?, ?, ?)";
-            $stmtDon = $this->pdo->prepare($sqlDon);
-            foreach ($dons as $d) {
-                $stmtDon->execute($d);
-            }
 
-            $this->pdo->exec("SET FOREIGN_KEY_CHECKS = 1");
+            $stmtD = $this->pdo->prepare("INSERT INTO stock_dons (id_article, quantite_recue, date_reception) VALUES (?, ?, ?)");
+            foreach ($dons as $d) {
+                $stmtD->execute($d);
+            }
 
             $this->pdo->commit();
             return true;

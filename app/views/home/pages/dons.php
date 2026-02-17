@@ -67,7 +67,13 @@
         </article>
 
         <article class="col-md-6">
-            <div class="don-card bg-white p-4 h-100 border-orange">
+            <div class="don-card bg-white p-4 h-100 border-orange position-relative">
+                <button type="button" 
+                        class="btn position-absolute top-0 end-0 mt-2 me-2 p-0 border-0" 
+                        data-bs-toggle="modal" data-bs-target="#modalParamVente">
+                    <i class="bi bi-gear-fill fs-4 text-orange"></i>
+                </button>
+
                 <div class="d-flex align-items-center mb-3">
                     <span class="badge-brutal badge-sell me-3">SELL</span>
                     <h3 class="fw-black mb-0">VENTE</h3>
@@ -278,6 +284,46 @@
                     </div>
                     <div class="modal-footer border-0 p-4 pt-0">
                         <button type="submit" class="btn-brutal btn-lime w-100">CONFIRMER LA VENTE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalParamVente" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content brutalist-modal border-orange">
+                <header class="modal-header border-bottom-4 d-flex justify-content-between align-items-center">
+                    <h3 class="fw-black mb-0 text-uppercase">Réglage par Article</h3>
+                    <button type="button" class="btn-close-brutal" data-bs-dismiss="modal">X</button>
+                </header>
+                <form action="/vente/update-param" method="POST">
+                    <div class="modal-body p-4">
+                        <div class="mb-4">
+                            <label class="label-brutal">SÉLECTIONNER L'ARTICLE</label>
+                            <select name="id_article" class="form-select brutalist-input" required>
+                                <option value="" selected disabled>Choisir un article...</option>
+                                <?php foreach ($articles as $a): ?>
+                                    <?php if (strtolower($a['nom']) !== 'argent'): ?>
+                                        <option value="<?= $a['id'] ?>">
+                                            <?= formatText($a['nom']) ?> (Actuel: <?= $a['pourcentage_vente'] ?>%)
+                                        </option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+    
+                        <div class="mb-2">
+                            <label class="label-brutal">NOUVEAU POURCENTAGE DE VENTE</label>
+                            <div class="input-group">
+                                <input type="number" step="0.1" name="pourcentage" class="form-control brutalist-input"
+                                    placeholder="Ex: 15.0" min="0" max="100" required>
+                                <span class="input-group-text bg-dark text-white border-dark">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 p-4 pt-0">
+                        <button type="submit" class="btn-brutal btn-dark w-100">MODIFIER LE PARAMÈTRE</button>
                     </div>
                 </form>
             </div>

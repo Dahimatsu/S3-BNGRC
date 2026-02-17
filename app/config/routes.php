@@ -102,15 +102,22 @@ $router->group('', function(Router $router) use ($app) {
             RecapController::getRecapData($app);
 
         });
-
     });
 
     $router->get('/reset', function () use ($app) {
         ResetController::reset($app);
     });
 
-    $router->post('/vente', function () use ($app) {
-        VenteController::processVente($app);
+    $router->group('/vente', function () use ($router, $app) {
+
+        $router->get('', function () use ($app) {
+            VenteController::processVente($app);
+        });
+
+        $router->post('/update-param', function () use ($app) {
+            VenteController::updateParam($app);
+
+        });
     });
 	
 }, [ SecurityHeadersMiddleware::class ]);

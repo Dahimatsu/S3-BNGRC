@@ -72,6 +72,16 @@ CREATE TABLE achats (
     FOREIGN KEY (id_article) REFERENCES articles(id)
 );
 
+CREATE VIEW vue_besoins_par_ville AS
+SELECT 
+        villes.id as ville_id,
+        villes.nom as villeNom, 
+        articles.nom as articleNom, 
+        besoins_villes.quantite_demandee as qteDemandee
+FROM 
+villes JOIN besoins_villes ON villes.id = besoins_villes.id_ville 
+JOIN articles ON besoins_villes.id_article = articles.id;
+
 -- 1. Insertion des Régions
 INSERT INTO regions (nom) VALUES
     ('Analamanga'),

@@ -19,15 +19,16 @@ class BesoinController
         $pdo = $app->db();
         $stockRepo = new StockRepository($pdo);
         $ville = new BesoinRepository($pdo);
-
+        $besoin = new BesoinRepository($pdo);
+        
         $villes = $ville->getAllVille();
         $articles = $stockRepo->getAllArticles();
-
+        
         $app->render('home/layout', [
             'page' => 'besoins',
             'title' => 'Besoins',
             'villes' => $villes,
-            'articles' => $articles
+            'articles' => $articles,
         ]);
     }
 

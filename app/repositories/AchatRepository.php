@@ -5,7 +5,7 @@ use PDO;
 class AchatRepository
 {
     private PDO $pdo;
-    private int $idArgent = 5; 
+    private int $idArgent = 1; 
 
     public function __construct(PDO $pdo)
     {

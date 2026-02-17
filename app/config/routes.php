@@ -9,6 +9,7 @@ use app\controllers\HomeController;
 use app\controllers\DonController;
 use app\controllers\BesoinController;
 use app\controllers\DashboardController;
+use app\controllers\AchatController;
 
 /** 
  * @var Router $router 
@@ -67,6 +68,10 @@ $router->group('', function(Router $router) use ($app) {
             DonController::processDistribution($app);
         });
 
+    });
+
+    $router->post('/achat', function () use ($app) {
+        AchatController::processAchat($app);
     });
 
     $router->get('/dashboard', function () use ($app) {

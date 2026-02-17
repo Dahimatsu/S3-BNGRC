@@ -84,12 +84,12 @@ INSERT INTO villes (nom, id_region) VALUES
     ('Fenerive Est', 2);
 
 -- 3. Articles (Besoins : Nature, Matériaux, Argent)
-INSERT INTO articles (nom, unite) VALUES
-    ('Riz', 'kg'),          -- Nature [cite: 10]
-    ('Huile', 'litre'),      -- Nature [cite: 10]
-    ('Tôle', 'pièce'),       -- Matériaux [cite: 11]
-    ('Clous', 'kg'),         -- Matériaux [cite: 11]
-    ('Argent', 'Ar');        -- Argent [cite: 12]
+INSERT INTO articles (nom, unite, prix_unitaire) VALUES
+    ('Riz', 'kg', 1000.00),         
+    ('Huile', 'litre', 500.00),      
+    ('Tôle', 'pièce', 2500.00),      
+    ('Clous', 'kg', 350.00),         
+    ('Argent', 'Ar', 1.00);       
 
 -- 4. Besoins des sinistrés par ville [cite: 14]
 INSERT INTO besoins_villes (id_ville, id_article, quantite_demandee) VALUES
@@ -107,3 +107,4 @@ INSERT INTO stock_dons (id_article, quantite_recue, date_reception) VALUES
 INSERT INTO distributions (id_ville, id_article, quantite_donnee) VALUES
     (1, 1, 300.00); -- On donne 300kg de Riz sur les 500kg demandés par Tana
 
+SELECT * FROM articles WHERE nom = 'Argent';

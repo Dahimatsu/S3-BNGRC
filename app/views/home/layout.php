@@ -18,6 +18,7 @@ $links = [
     ['href' => '/besoin', 'label' => 'Besoins'],
     ['href' => '/don', 'label' => 'Dons'],
     ['href' => '/dashboard', 'label' => 'Dashboard'],
+    ['href' => '/recapitulatif', 'label' => 'Récapitulatif'],
 ];
 ?>
 <!DOCTYPE html>

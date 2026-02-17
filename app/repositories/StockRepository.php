@@ -15,7 +15,7 @@ class StockRepository
 
     public function getAllArticles()
     {
-        $query = "SELECT id, nom, unite FROM articles";
+        $query = "SELECT id, nom, unite, prix_unitaire FROM articles";
         $stmt = $this->pdo->query($query);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -56,6 +56,7 @@ class StockRepository
         $query = "SELECT 
                 a.nom, 
                 a.unite, 
+                a.prix_unitaire,
                 (
                     IFNULL((SELECT SUM(quantite_recue) FROM stock_dons WHERE id_article = a.id), 0) - 
                     IFNULL((SELECT SUM(quantite_donnee) FROM distributions WHERE id_article = a.id), 0)
